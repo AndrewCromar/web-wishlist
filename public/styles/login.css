@@ -1,0 +1,18 @@
+#loginEmailForm, #loginCodeForm {
+    margin: 20px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+#loginEmailForm input,
+#loginCodeForm input {
+    flex: 1;
+}
+
+#loginEmailForm button,
+#loginCodeForm button {
+    flex: 0 0 auto;
+}

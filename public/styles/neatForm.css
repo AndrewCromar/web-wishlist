@@ -1,0 +1,12 @@
+.neatForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.neatForm input,
+.neatForm button {
+    width: 100%;
+    box-sizing: border-box;
+}
