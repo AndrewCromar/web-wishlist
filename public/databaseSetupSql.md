@@ -28,6 +28,21 @@ CREATE TABLE codes (
         ON DELETE CASCADE
 );
 
+CREATE TABLE groups (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    uid INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    INDEX idx_uid (uid),
+    UNIQUE KEY uniq_user_group (uid, name),
+
+    CONSTRAINT fk_groups_account
+        FOREIGN KEY (uid) REFERENCES accounts(uid)
+        ON DELETE CASCADE
+);
+
 CREATE TABLE items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     uid INT NOT NULL,
@@ -54,20 +69,5 @@ CREATE TABLE items (
     CONSTRAINT fk_items_group
         FOREIGN KEY (group_id) REFERENCES groups(id)
         ON DELETE SET NULL
-);
-
-CREATE TABLE groups (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    uid INT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    INDEX idx_uid (uid),
-    UNIQUE KEY uniq_user_group (uid, name),
-
-    CONSTRAINT fk_groups_account
-        FOREIGN KEY (uid) REFERENCES accounts(uid)
-        ON DELETE CASCADE
 );
 ```
