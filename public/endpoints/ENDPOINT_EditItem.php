@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once __DIR__ . '/../api/EditItem.php';
-require_once __DIR__ . '/../api/VerifyGroupOwnership.php';
+require_once dirname(__DIR__, 2) . '/backend/api/EditItem.php';
+require_once dirname(__DIR__, 2) . '/backend/api/VerifyGroupOwnership.php';
 
 if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 

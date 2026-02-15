@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once __DIR__ . '/../api/AddItem.php';
+require_once dirname(__DIR__, 2) . '/backend/api/GetItemById.php';
 
 if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 
@@ -13,26 +13,24 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['name']) || !isset($data['link']) || !isset($data['price'])) {
+if (!isset($data['itemId'])) {
     echo json_encode(["status" => "fail", "error" => "ERROR010"]);
     exit;
 }
 
 $uid = $_SESSION['uid'];
-$name = $data['name'];
-$link = $data['link'];
-$price = floatval($data['price']);
+$itemId = intval($data['itemId']);
 
-if (empty($name)) {
+if ($itemId <= 0) {
     echo json_encode(["status" => "fail", "error" => "ERROR011"]);
     exit;
 }
 
-$result = AddItem($uid, $name, $link, $price);
+$item = GetItemById($uid, $itemId);
 
-if ($result === false) {
-    echo json_encode(["status" => "fail", "error" => "ERROR013"]);
+if (!$item) {
+    echo json_encode(["status" => "fail", "error" => "ERROR012"]);
     exit;
 }
 
-echo json_encode(["status" => "OK", "message" => "Item added successfully"]);
+echo json_encode(["status" => "OK", "data" => $item]);

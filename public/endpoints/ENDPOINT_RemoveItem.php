@@ -2,7 +2,8 @@
 
 session_start();
 
-require_once __DIR__ . '/../api/DistributeFunds.php';
+require_once dirname(__DIR__, 2) . '/backend/api/RemoveItem.php';
+
 if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -12,24 +13,24 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['amount'])) {
+if (!isset($data['itemId'])) {
     echo json_encode(["status" => "fail", "error" => "ERROR010"]);
     exit;
 }
 
 $uid = $_SESSION['uid'];
-$amount = floatval($data['amount']);
+$itemId = intval($data['itemId']);
 
-if ($amount <= 0) {
+if ($itemId <= 0) {
     echo json_encode(["status" => "fail", "error" => "ERROR011"]);
     exit;
 }
 
-$result = DistributeFunds($uid, $amount);
+$result = RemoveItem($uid, $itemId);
 
 if ($result === false) {
     echo json_encode(["status" => "fail", "error" => "ERROR013"]);
     exit;
 }
 
-echo json_encode(["status" => "OK", "message" => "Funding distributed successfully"]);
+echo json_encode(["status" => "OK", "message" => "Item removed successfully"]);

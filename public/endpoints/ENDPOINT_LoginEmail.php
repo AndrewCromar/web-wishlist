@@ -10,13 +10,13 @@ session_start();
 
 $email = trim($_POST['email'] ?? '');
 
-require_once __DIR__ . '/../../global.php';
-require_once __DIR__ . '/../api/IsEmailReal.php';
-require_once __DIR__ . '/../api/DoesEmailExist.php';
-require_once __DIR__ . '/../api/GetUidByEmail.php';
-require_once __DIR__ . '/../api/GenerateLoginCodeForUser.php';
-require_once __DIR__ . '/../api/SendEmailCode.php';
-require_once __DIR__ . '/../api/CheckCodeRequestRateLimitForUser.php';
+require_once dirname(__DIR__, 2) . '/backend/api/global.php';
+require_once dirname(__DIR__, 2) . '/backend/api/IsEmailReal.php';
+require_once dirname(__DIR__, 2) . '/backend/api/DoesEmailExist.php';
+require_once dirname(__DIR__, 2) . '/backend/api/GetUidByEmail.php';
+require_once dirname(__DIR__, 2) . '/backend/api/GenerateLoginCodeForUser.php';
+require_once dirname(__DIR__, 2) . '/backend/api/SendEmailCode.php';
+require_once dirname(__DIR__, 2) . '/backend/api/CheckCodeRequestRateLimitForUser.php';
 
 if (!IsEmailReal($email)) { echo json_encode(["status" => "fail", "error" => "ERROR001"]); exit; }
 if (!DoesEmailExist($email)) { echo json_encode(["status" => "fail", "error" => "ERROR002"]); exit; }
