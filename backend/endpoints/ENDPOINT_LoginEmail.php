@@ -24,7 +24,7 @@ if (!DoesEmailExist($email)) { echo json_encode(["status" => "fail", "error" => 
 $uid = GetUidByEmail($email);
 if (!$uid) { echo json_encode(["status" => "fail", "error" => "ERROR005"]); exit; }
 
-if (CheckCodeRequestRateLimitForuser($uid)) { echo json_encode(["status" => "fail", "error" => "ERROR004"]); exit; }
+if (CheckCodeRequestRateLimitForUser($uid)) { echo json_encode(["status" => "fail", "error" => "ERROR004"]); exit; }
 
 $code = GenerateLoginCodeForUser($uid);
 

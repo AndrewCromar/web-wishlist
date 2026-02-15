@@ -1,0 +1,20 @@
+:root {
+  --font: "Source Code Pro", mono;
+
+  --background-light: #92cde4;
+  --background: #89C2D9;
+  --background-dark: #61A5C2;
+
+  --border: #468FAF;
+
+  --text-light: #184861;
+  --text: #133d54;
+
+  --primary-light: #9d4edd;
+  --primary: #7b2cbf;
+
+  --danger: #f94144;
+  --warning: #f9c74f;
+  --success: #90be6d;
+  --info: #577590;
+}

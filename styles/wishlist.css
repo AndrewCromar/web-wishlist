@@ -6,11 +6,11 @@
 }
 
 .wishlist-container > div > p:nth-child(2) {
-    color: var(--background-color);
+    color: var(--background);
 }
 
 .wishlist-container > div > p:nth-child(2) >  {
-    color: var(--background-color);
+    color: var(--background);
 }
 
 
@@ -19,19 +19,19 @@
 }
 
 .wishlist-container > div > p > span:nth-child(3) {
-    color: var(--text-color-muted);
+    color: var(--text-light);
     font-size: smaller;
 }
 
 .wishlist-container > div > div {
-    border: solid var(--text-color) 2px;
+    border: solid var(--text) 2px;
 
     height: 5px;
     width: 100%;
 }
 
 .wishlist-container > div > div > div {
-    background-color: var(--text-color);
+    background-color: var(--text);
 
     height: 100%;
 }

@@ -1,0 +1,6 @@
+a
+{
+    color: var(--text-light);
+    text-decoration: underline;
+    cursor: pointer;
+}
