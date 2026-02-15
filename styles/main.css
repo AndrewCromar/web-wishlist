@@ -1,37 +1,11 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--font-family);
-}
+    font-family: var(--font);
 
-hr {
-  background-color: var(--text-color);
+    background-color: var(--background-color);
 
-  width: 100%;
-  height: 2px;
+    color: var(--text-color);
 
-  border: none;
-}
-
-a {
-  color: var(--text-color);
-}
-
-.left-right-div {
-  display: flex;
-  width: 100%;
-}
-
-.left-right-div > div {
-  flex: 1;
-  margin: 0;
-  padding: 0;
-}
-
-
-.left-right-div > div:nth-child(1) {
-  border-right: solid var(--text-color) 2px;
+    margin: 0;
+    padding: 0;
 }

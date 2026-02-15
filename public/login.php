@@ -2,22 +2,73 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
 
 <link rel="stylesheet" href="../styles/root.css" />
+<!-- <link rel="stylesheet" href="../styles/main.css" /> -->
 <link rel="stylesheet" href="../styles/main.css" />
-<link rel="stylesheet" href="../styles/login.css" />
+<link rel="stylesheet" href="../styles/content.css" />
+<link rel="stylesheet" href="../styles/icon-text.css" />
+<link rel="stylesheet" href="../styles/a.css" />
+<link rel="stylesheet" href="../styles/nav-area.css" />
+<link rel="stylesheet" href="../styles/hr.css" />
+<link rel="stylesheet" href="../styles/center-center.css" />
+<link rel="stylesheet" href="../styles/login-form.css" />
 
-<center>
+<div class="content">
+    <div>
+        <div>
+            <div class="center-center">
+                <p class="icon-text">WISHLIST.</p>
+            </div>
+        </div>
+        <div>
+            <div class="nav-area">
+                <p>PAGES</p>
+                <ul>
+                    <li><a href="login.php">login.</a></li>
+                    <li><a href="dashboard.php">dashboard.</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="center-center">
+            <div class="login-form">
+                <center><h1>Login</h1></center>
+                <hr><br>
+                <form id="loginEmailForm">
+                    <label for="login_email">EMAIL:</label>
+                    <input type="text" id="login_email" name="login_email" required />
+                    <br><br>
+                    <button type="button" id="loginEmailButton">Login</button>
+                </form>
+                <form id="loginCodeForm" style="display: none;">
+                    <label for="login_code">LOGIN CODE (sent via email)</label>
+                    <input type="text" id="login_code" name="login_code" required />
+                    <br><br>
+                    <button type="button" id="loginCodeButton">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <center>
     <h1>Login</h1>
 </center>
-<hr>
+<hr> -->
 
-<form id="loginEmailForm">
+<!-- <form id="loginEmailForm">
     <label for="login_email">Email</label>
-    <input type="text" id="login_email" name="login_email" required />
+    <input type="text" id="login_email" name="login_email" required /><br>
     <button type="button" id="loginEmailButton">Login</button>
-</form>
+</form> -->
 
 <form id="loginCodeForm" style="display: none;">
     <label for="login_code">Login Code (sent via email)</label>

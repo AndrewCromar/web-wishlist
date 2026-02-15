@@ -7,7 +7,7 @@ function LoginEmail(email) {
     success: function (response) {
       if (response.status === "OK") {
         document.getElementById("loginEmailForm").style.display = "none";
-        document.getElementById("loginCodeForm").style.display = "flex";
+        document.getElementById("loginCodeForm").style.display = "";
 
         if (response.devcode != null) {
           alert(response.devcode);
