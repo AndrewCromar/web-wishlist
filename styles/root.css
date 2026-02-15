@@ -1,70 +1,20 @@
 :root {
-  /* TEXT */
-  --text-color-dark: var(--yale-blue-1);
-  --text-color: var(--yale-blue-2);
-  --text-color-light: var(--yale-blue-3);
-  --link-color: var(--yale-blue-3);
+  --font: "Source Code Pro", mono;
 
-  /* BACKGROUND */
-  --background-color: var(--ink-black);
-  --background-color-light: var(--ink-black-2);
-  --background-color-lighter: var(--ink-black-2);
+  --background-light: #92cde4;
+  --background: #89C2D9;
+  --background-dark: #61A5C2;
 
-  /* BORDER */
-  --border-color: var(--shadow-grey);
+  --border: #468FAF;
 
-  /* FONTS */
-  --font: var(--source-code-pro);
-  --source-code-pro: "Source Code Pro", monospace;
-  --knewave: "Knewave", system-ui;
-  --caveat-brush: "Caveat Brush";
-  --funnel-sans: "Funnel Sans", sans-serif;
+  --text-light: #184861;
+  --text: #133d54;
 
-  /* NOT ORGANIZED */
-  --text-color-muted: grey;
-  --accent-color: #a200ff;
+  --primary-light: #9d4edd;
+  --primary: #7b2cbf;
 
-  --gradient-light: linear-gradient(100deg, var(--mahogany-red) 0%, var(--mahogany-red-2) 100%);
-  --gradient-dark: linear-gradient(100deg, var(--dark-garnet) 0%, var(--mahogany-red) 100%);
-
-  --text-border: 2px 0 var(--text-border-color), -2px 0 var(--text-border-color), 0 2px var(--text-border-color), 0 -2px var(--text-border-color), 1px 1px var(--text-border-color), 1px -1px var(--text-border-color), -1px 1px var(--text-border-color), -1px -1px var(--text-border-color);
-  --text-border-color: var(--dark-garnet);
-
-  /* COLORS */
-  --onyx: #0b090aff;
-  --carbon-black: #161a1dff;
-  --dark-garnet: #660708ff;
-  --mahogany-red: #a4161aff;
-  --mahogany-red-2: #ba181bff;
-  --strawberry-red: #e5383bff;
-  --silver: #b1a7a6ff;
-  --dust-grey: #d3d3d3ff;
-  --white-smoke: #f5f3f4ff;
-  --white: #ffffffff;
-
-  --ink-black: #11151cff;
-  --ink-black-2: #151b25ff;
-  --shadow-grey: #19212eff;
-  --deep-space-blue: #212d40ff;
-  --deep-space-blue-2: #273246ff;
-  --deep-space-blue-3: #2c374bff;
-  --charcoal-blue: #313c51ff;
-  --charcoal-blue-2: #343f54ff;
-  --charcoal-blue-3: #364156ff;
-  --charcoal-blue-4: #485265ff;
-
-  --deep-space-blue: #012a4aff;
-  --yale-blue: #013a63ff;
-  --yale-blue-2: #01497cff;
-  --yale-blue-3: #014f86ff;
-  --rich-cerulean: #2a6f97ff;
-  --cerulean: #2c7da0ff;
-  --air-force-blue: #468fafff;
-  --steel-blue: #61a5c2ff;
-  --sky-blue-light: #89c2d9ff;
-  --light-blue: #a9d6e5ff;
-
-  --vibrant-coral: #ff6961ff;
-  --lime-cream: #fdfd96ff;
-  --light-green: #77dd77ff;
+  --danger: #f94144;
+  --warning: #f9c74f;
+  --success: #90be6d;
+  --info: #577590;
 }

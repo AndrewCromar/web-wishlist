@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION['uid'])) {
+    header("Location: dashboard.php");
+    exit;
+}
+?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -9,72 +18,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/root.css" />
-<!-- <link rel="stylesheet" href="../styles/main.css" /> -->
-<link rel="stylesheet" href="../styles/main.css" />
-<link rel="stylesheet" href="../styles/content.css" />
-<link rel="stylesheet" href="../styles/icon-text.css" />
-<link rel="stylesheet" href="../styles/a.css" />
-<link rel="stylesheet" href="../styles/nav-area.css" />
-<link rel="stylesheet" href="../styles/hr.css" />
-<link rel="stylesheet" href="../styles/center-center.css" />
-<link rel="stylesheet" href="../styles/login-form.css" />
+<?php require_once '../scripts/LoadStyles.php'; ?>
 
-<div class="content">
-    <div>
-        <div>
-            <div class="center-center">
-                <p class="icon-text">WISHLIST.</p>
-            </div>
-        </div>
-        <div>
-            <div class="nav-area">
-                <p>PAGES</p>
-                <ul>
-                    <li><a href="login.php">login.</a></li>
-                    <li><a href="dashboard.php">dashboard.</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="center-center">
-            <div class="login-form">
-                <center><h1>Login</h1></center>
-                <hr><br>
-                <form id="loginEmailForm">
-                    <label for="login_email">EMAIL:</label>
-                    <input type="text" id="login_email" name="login_email" required />
-                    <br><br>
-                    <button type="button" id="loginEmailButton">Login</button>
-                </form>
-                <form id="loginCodeForm" style="display: none;">
-                    <label for="login_code">LOGIN CODE (sent via email)</label>
-                    <input type="text" id="login_code" name="login_code" required />
-                    <br><br>
-                    <button type="button" id="loginCodeButton">Login</button>
-                </form>
-            </div>
-        </div>
+<div class="center-center">
+    <div class="login-form">
+        <center>
+            <h1>Login</h1>
+        </center>
+        <hr><br>
+        <form id="loginEmailForm">
+            <label for="login_email">EMAIL:</label>
+            <input type="text" id="login_email" name="login_email" required />
+            <br><br>
+            <button type="button" id="loginEmailButton">Login</button>
+        </form>
+        <form id="loginCodeForm" style="display: none;">
+            <label for="login_code">LOGIN CODE (sent via email)</label>
+            <input type="text" id="login_code" name="login_code" required />
+            <br><br>
+            <button type="button" id="loginCodeButton">Login</button>
+        </form>
     </div>
 </div>
-
-<!-- <center>
-    <h1>Login</h1>
-</center>
-<hr> -->
-
-<!-- <form id="loginEmailForm">
-    <label for="login_email">Email</label>
-    <input type="text" id="login_email" name="login_email" required /><br>
-    <button type="button" id="loginEmailButton">Login</button>
-</form> -->
-
-<form id="loginCodeForm" style="display: none;">
-    <label for="login_code">Login Code (sent via email)</label>
-    <input type="text" id="login_code" name="login_code" required />
-    <button type="button" id="loginCodeButton">Login</button>
-</form>
 
 <script src="../scripts/account/LoginEmail.js"></script>
 <script src="../scripts/account/LoginCode.js"></script>
