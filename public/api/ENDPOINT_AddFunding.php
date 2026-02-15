@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once dirname(__DIR__, 2) . '/backend/api/CreateGroup.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/DistributeFunds.php';
 
 if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 
@@ -13,24 +13,24 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['name'])) {
+if (!isset($data['amount'])) {
     echo json_encode(["status" => "fail", "error" => "ERROR010"]);
     exit;
 }
 
 $uid = $_SESSION['uid'];
-$name = $data['name'];
+$amount = floatval($data['amount']);
 
-if (empty($name)) {
+if ($amount <= 0) {
     echo json_encode(["status" => "fail", "error" => "ERROR011"]);
     exit;
 }
 
-$result = CreateGroup($uid, $name);
+$result = DistributeFunds($uid, $amount);
 
 if ($result === false) {
     echo json_encode(["status" => "fail", "error" => "ERROR013"]);
     exit;
 }
 
-echo json_encode(["status" => "OK", "message" => "Group created successfully"]);
+echo json_encode(["status" => "OK", "message" => "Funding distributed successfully"]);

@@ -1,6 +1,6 @@
 function RemoveItem(id) {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_RemoveItem.php",
+    url: "../api/ENDPOINT_RemoveItem.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({

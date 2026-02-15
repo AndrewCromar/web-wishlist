@@ -1,6 +1,6 @@
 function Logout() {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_Logout.php",
+    url: "../api/ENDPOINT_Logout.php",
     type: "POST",
     dataType: "json",
     success: function (response) {

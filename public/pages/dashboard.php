@@ -53,10 +53,7 @@ if (!isset($_SESSION['uid'])) {
                 <ul style="padding-left: 20px;">
                     <li>
                         Email: "
-                        <?php
-                        include_once __DIR__ . '/../backend/api/GetLoggedInEmail.php';
-                        echo GetLoggedInEmail();
-                        ?>
+                        not working
                         ".
                     </li>
                     <li>

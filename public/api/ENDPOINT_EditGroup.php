@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once dirname(__DIR__, 2) . '/backend/api/GetItemById.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/EditGroup.php';
 
 if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 
@@ -13,24 +13,25 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['itemId'])) {
+if (!isset($data['groupId']) || !isset($data['name'])) {
     echo json_encode(["status" => "fail", "error" => "ERROR010"]);
     exit;
 }
 
 $uid = $_SESSION['uid'];
-$itemId = intval($data['itemId']);
+$group_id = intval($data['groupId']);
+$name = $data['name'];
 
-if ($itemId <= 0) {
+if ($group_id <= 0 || empty($name)) {
     echo json_encode(["status" => "fail", "error" => "ERROR011"]);
     exit;
 }
 
-$item = GetItemById($uid, $itemId);
+$result = EditGroup($uid, $group_id, $name);
 
-if (!$item) {
-    echo json_encode(["status" => "fail", "error" => "ERROR012"]);
+if ($result === false) {
+    echo json_encode(["status" => "fail", "error" => "ERROR014"]);
     exit;
 }
 
-echo json_encode(["status" => "OK", "data" => $item]);
+echo json_encode(["status" => "OK", "message" => "Group updated successfully"]);

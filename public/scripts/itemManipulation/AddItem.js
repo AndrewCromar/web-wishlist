@@ -1,6 +1,6 @@
 function AddItem(name, link, price) {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_AddItem.php",
+    url: "../api/ENDPOINT_AddItem.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({

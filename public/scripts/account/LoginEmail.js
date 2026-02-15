@@ -1,6 +1,6 @@
 function LoginEmail(email) {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_LoginEmail.php",
+    url: "../api/ENDPOINT_LoginEmail.php",
     type: "POST",
     data: { email },
     dataType: "json",

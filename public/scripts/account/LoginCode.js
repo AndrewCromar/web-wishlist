@@ -1,6 +1,6 @@
 function LoginCode(code) {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_LoginCode.php",
+    url: "../api/ENDPOINT_LoginCode.php",
     type: "POST",
     data: { code },
     dataType: "json",

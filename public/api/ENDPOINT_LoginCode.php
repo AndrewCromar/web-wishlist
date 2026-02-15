@@ -8,8 +8,8 @@
 
 session_start();
 
-require_once dirname(__DIR__, 2) . '/backend/api/GetUidByCode.php';
-require_once dirname(__DIR__, 2) . '/backend/api/DeleteCodesForUser.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/GetUidByCode.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/DeleteCodesForUser.php';
 
 $code = trim($_POST['code'] ?? '');
 

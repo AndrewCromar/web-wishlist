@@ -1,6 +1,6 @@
 function RenderWishlist() {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_GetUserItems.php",
+    url: "../api/ENDPOINT_GetUserItems.php",
     type: "POST",
     dataType: "json",
     success: function (response) {

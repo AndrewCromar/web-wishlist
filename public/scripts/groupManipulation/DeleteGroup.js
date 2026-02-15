@@ -15,7 +15,7 @@ function DeleteGroup(groupId) {
   }
 
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_DeleteGroup.php",
+    url: "../api/ENDPOINT_DeleteGroup.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({

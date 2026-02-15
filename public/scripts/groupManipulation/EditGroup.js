@@ -7,7 +7,7 @@ document.getElementById("edit_group_id").addEventListener("input", function () {
   }
 
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_GetGroupById.php",
+    url: "../api/ENDPOINT_GetGroupById.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({
@@ -43,7 +43,7 @@ document.getElementById("editGroupButton").addEventListener("click", function ()
 
 function EditGroup(groupId, name) {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_EditGroup.php",
+    url: "../api/ENDPOINT_EditGroup.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({

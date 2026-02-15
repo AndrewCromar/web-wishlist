@@ -8,7 +8,7 @@ function DeleteUnusedGroups() {
   }
 
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_DeleteUnusedGroups.php",
+    url: "../api/ENDPOINT_DeleteUnusedGroups.php",
     type: "POST",
     contentType: "application/json",
     dataType: "json",

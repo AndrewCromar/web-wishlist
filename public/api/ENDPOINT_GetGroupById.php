@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once dirname(__DIR__, 2) . '/backend/api/DeleteGroup.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/GetGroupById.php';
 
 if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 
@@ -26,11 +26,11 @@ if ($group_id <= 0) {
     exit;
 }
 
-$result = DeleteGroup($uid, $group_id);
+$group = GetGroupById($uid, $group_id);
 
-if ($result === false) {
+if (!$group) {
     echo json_encode(["status" => "fail", "error" => "ERROR014"]);
     exit;
 }
 
-echo json_encode(["status" => "OK", "message" => "Group deleted successfully"]);
+echo json_encode(["status" => "OK", "data" => $group]);

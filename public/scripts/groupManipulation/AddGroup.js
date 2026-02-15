@@ -11,7 +11,7 @@ document.getElementById("addGroupButton").addEventListener("click", function () 
 
 function AddGroup(name) {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_CreateGroup.php",
+    url: "../api/ENDPOINT_CreateGroup.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({

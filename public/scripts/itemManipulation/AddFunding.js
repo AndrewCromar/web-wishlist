@@ -1,6 +1,6 @@
 function AddFunding(amount) {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_AddFunding.php",
+    url: "../api/ENDPOINT_AddFunding.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({

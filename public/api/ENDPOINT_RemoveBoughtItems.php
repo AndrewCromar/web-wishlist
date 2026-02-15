@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once dirname(__DIR__, 2) . '/backend/api/DeleteUnusedGroups.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/RemoveBoughtItems.php';
 
 if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 
@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $uid = $_SESSION['uid'];
 
-$result = DeleteUnusedGroups($uid);
+$result = RemoveBoughtItems($uid);
 
 if ($result === false) {
     echo json_encode(["status" => "fail", "error" => "ERROR013"]);
     exit;
 }
 
-echo json_encode(["status" => "OK", "message" => "Unused groups deleted successfully"]);
+echo json_encode(["status" => "OK", "message" => "Bought items removed successfully"]);

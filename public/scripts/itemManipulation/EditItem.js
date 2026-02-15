@@ -10,7 +10,7 @@ document.getElementById("edit_id").addEventListener("input", function () {
   }
 
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_GetItemById.php",
+    url: "../api/ENDPOINT_GetItemById.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({
@@ -61,7 +61,7 @@ document.getElementById("editItemButton").addEventListener("click", function () 
 
 function EditItem(id, name, link, price, groupId) {
   $.ajax({
-    url: "../backend/endpoints/ENDPOINT_EditItem.php",
+    url: "../api/ENDPOINT_EditItem.php",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({
