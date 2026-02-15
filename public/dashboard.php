@@ -22,8 +22,20 @@ if (!isset($_SESSION['uid'])) {
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet">
 
-<?php require_once '../scripts/LoadStyles.php'; ?>
-
+<!-- <?php require_once '../scripts/LoadStyles.php'; ?> -->
+<link rel="stylesheet" href="../styles/a.css" />
+<link rel="stylesheet" href="../styles/center-center.css" />
+<link rel="stylesheet" href="../styles/content.css" />
+<link rel="stylesheet" href="../styles/dropdown.css" />
+<link rel="stylesheet" href="../styles/form.css" />
+<link rel="stylesheet" href="../styles/hr.css" />
+<link rel="stylesheet" href="../styles/icon-text.css" />
+<link rel="stylesheet" href="../styles/left-right-div.css" />
+<link rel="stylesheet" href="../styles/main.css" />
+<link rel="stylesheet" href="../styles/nav-area.css" />
+<link rel="stylesheet" href="../styles/neat-form.css" />
+<link rel="stylesheet" href="../styles/root.css" />
+<link rel="stylesheet" href="../styles/wishlist.css" />
 
 <div class="content">
     <div>
