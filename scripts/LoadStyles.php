@@ -25,7 +25,7 @@ function load_css_recursive($directory)
     }
 }
 
-load_css(__DIR__ . '/styles/root.css');
-load_css_recursive(__DIR__ . '/../styles/');
+load_css(__DIR__ . '/../public/styles/root.css');
+load_css_recursive(__DIR__ . '/../public/styles/');
 
 ?>
