@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once dirname(__DIR__, 2) . '/backend/functions/DistributeFunds.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/AddFunding.php';
 
 if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 
@@ -21,16 +21,11 @@ if (!isset($data['amount'])) {
 $uid = $_SESSION['uid'];
 $amount = floatval($data['amount']);
 
-if ($amount <= 0) {
-    echo json_encode(["status" => "fail", "error" => "ERROR011"]);
-    exit;
-}
-
-$result = DistributeFunds($uid, $amount);
+$result = AddToLedger($uid, $amount, $amount > 0 ? "Add funds." : "Remove funds.");
 
 if ($result === false) {
     echo json_encode(["status" => "fail", "error" => "ERROR013"]);
     exit;
 }
 
-echo json_encode(["status" => "OK", "message" => "Funding distributed successfully"]);
+echo json_encode(["status" => "OK", "message" => "Funding added/removed successfully."]);

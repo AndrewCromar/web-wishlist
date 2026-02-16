@@ -39,11 +39,26 @@ if (!isset($_SESSION['uid'])) {
 <div class="content">
     <div>
         <div class="center-center">
-            <h1>FUNDS</h1>
+            <h1>FUND MANAGEMENT</h1>
         </div>
     </div>
     <div>
         <br>
+        <div class="dropdown open">
+            <div onclick="ToggleDropdown(this.parentElement)">
+                <i class="fa-solid fa-caret-down"></i>
+                <p>Navigation</p>
+            </div>
+            <div>
+                <p>
+                    <span><a href="dashboard.php">Dashboard</a></span>
+                    /
+                    <span><a href="funds.php">Fund Management</a></span>
+                    /
+                    <span><a onclick="Logout();">Logout</a></span>
+                </p>
+            </div>
+        </div>
         <div class="left-right">
             <div style="flex: none; width: 250px;">
                 <div class="dropdown open">
@@ -52,64 +67,13 @@ if (!isset($_SESSION['uid'])) {
                         <p>Ledger</p>
                     </div>
                     <div>
-                        <p><span style="font-weight: bold;">Net Total:</span> $450</p>
+                        <p>
+                            <span style="font-weight: bold;">Net Total:</span>
+                            <span class="net-funds"></span>
+                        </p>
                         <hr>
-
-                        <table>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100000</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--danger); 2px">-$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--danger); 2px">-$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--danger); 2px">-$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--danger); 2px">-$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--danger); 2px">-$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--danger); 2px">-$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--success); 2px">+$100</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left: solid var(--danger); 2px">-$100</td>
-                            </tr>
+                        <p style="font-size: smaller;">new to old</p>
+                        <table class="ledger-table">
                         </table>
                     </div>
                 </div>
@@ -148,13 +112,7 @@ if (!isset($_SESSION['uid'])) {
 
 <script src="../scripts/Dropdown.js"></script>
 <script src="../scripts/account/Logout.js"></script>
-<script src="../scripts/RenderWishlist.js"></script>
-<script src="../scripts/itemManipulation/AddItem.js"></script>
-<script src="../scripts/itemManipulation/RemoveItem.js"></script>
-<script src="../scripts/itemManipulation/RemoveBoughtItems.js"></script>
-<script src="../scripts/itemManipulation/AddFunding.js"></script>
-<script src="../scripts/itemManipulation/EditItem.js"></script>
-<script src="../scripts/groupManipulation/AddGroup.js"></script>
-<script src="../scripts/groupManipulation/EditGroup.js"></script>
-<script src="../scripts/groupManipulation/DeleteGroup.js"></script>
-<script src="../scripts/groupManipulation/DeleteUnusedGroups.js"></script>
+<script src="../scripts/funds/AddFunding.js"></script>
+<script src="../scripts/funds/RemoveFunding.js"></script>
+<script src="../scripts/funds/RenderNetFunds.js"></script>
+<script src="../scripts/funds/RenderLedger.js"></script>

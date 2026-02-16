@@ -44,6 +44,21 @@ if (!isset($_SESSION['uid'])) {
     </div>
     <div>
         <br>
+        <div class="dropdown open">
+            <div onclick="ToggleDropdown(this.parentElement)">
+                <i class="fa-solid fa-caret-down"></i>
+                <p>Navigation</p>
+            </div>
+            <div>
+                <p>
+                    <span><a href="dashboard.php">Dashboard</a></span>
+                    /
+                    <span><a href="funds.php">Fund Management</a></span>
+                    /
+                    <span><a onclick="Logout();">Logout</a></span>
+                </p>
+            </div>
+        </div>
         <div class="dropdown">
             <div onclick="ToggleDropdown(this.parentElement)">
                 <i class="fa-solid fa-caret-down"></i>
@@ -64,10 +79,8 @@ if (!isset($_SESSION['uid'])) {
                         ".
                     </li>
                 </ul>
-                <button onclick="Logout();">Logout</button>
             </div>
         </div>
-
         <div class="left-right">
             <div>
                 <div class="dropdown open">
@@ -80,21 +93,6 @@ if (!isset($_SESSION['uid'])) {
                 </div>
             </div>
             <div>
-
-                <div class="dropdown open">
-                    <div onclick="ToggleDropdown(this.parentElement)">
-                        <i class="fa-solid fa-caret-down"></i>
-                        <p>Add Funding</p>
-                    </div>
-                    <div>
-                        <form id="addFundingForm" class="neatForm">
-                            <input type="number" id="add_funding_amount" name="add_funding_amount"
-                                placeholder="Amount to Add (USD)" required />
-                            <button type="button" id="addFundingButton">Add Funding</button>
-                        </form>
-                    </div>
-                </div>
-
                 <div class="dropdown open">
                     <div onclick="ToggleDropdown(this.parentElement)">
                         <i class="fa-solid fa-caret-down"></i>
@@ -117,7 +115,6 @@ if (!isset($_SESSION['uid'])) {
                                 </form>
                             </div>
                         </div>
-
                         <div class="dropdown open">
                             <div onclick="ToggleDropdown(this.parentElement)">
                                 <i class="fa-solid fa-caret-down"></i>
@@ -137,7 +134,6 @@ if (!isset($_SESSION['uid'])) {
                                 </form>
                             </div>
                         </div>
-
                         <div class="dropdown open">
                             <div onclick="ToggleDropdown(this.parentElement)">
                                 <i class="fa-solid fa-caret-down"></i>
@@ -157,7 +153,6 @@ if (!isset($_SESSION['uid'])) {
 
                     </div>
                 </div>
-
                 <div class="dropdown open">
                     <div onclick="ToggleDropdown(this.parentElement)">
                         <i class="fa-solid fa-caret-down"></i>
@@ -193,7 +188,6 @@ if (!isset($_SESSION['uid'])) {
                                 </form>
                             </div>
                         </div>
-
                         <div class="dropdown open">
                             <div onclick="ToggleDropdown(this.parentElement)">
                                 <i class="fa-solid fa-caret-down"></i>
