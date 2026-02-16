@@ -1,6 +1,3 @@
-# Database Setup SQL
-
-```sql
 CREATE DATABASE IF NOT EXISTS wishlist
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
@@ -51,7 +48,6 @@ CREATE TABLE items (
     name VARCHAR(255) NOT NULL,
     link VARCHAR(512) DEFAULT NULL,
     price DECIMAL(10,2) NOT NULL,
-    money_saved DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     bought BOOLEAN NOT NULL DEFAULT FALSE,
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -70,4 +66,21 @@ CREATE TABLE items (
         FOREIGN KEY (group_id) REFERENCES groups(id)
         ON DELETE SET NULL
 );
-```
+
+CREATE TABLE ledger (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    uid INT NOT NULL,
+
+    amount DECIMAL(10,2) NOT NULL,
+
+    description VARCHAR(255) DEFAULT NULL,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    INDEX idx_uid (uid),
+    INDEX idx_created_at (created_at),
+
+    CONSTRAINT fk_ledger_account
+        FOREIGN KEY (uid) REFERENCES accounts(uid)
+        ON DELETE CASCADE
+);
