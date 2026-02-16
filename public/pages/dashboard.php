@@ -29,7 +29,7 @@ if (!isset($_SESSION['uid'])) {
 <link rel="stylesheet" href="../styles/form.css" />
 <link rel="stylesheet" href="../styles/hr.css" />
 <link rel="stylesheet" href="../styles/icon-text.css" />
-<link rel="stylesheet" href="../styles/left-right-div.css" />
+<link rel="stylesheet" href="../styles/left-right.css" />
 <link rel="stylesheet" href="../styles/main.css" />
 <link rel="stylesheet" href="../styles/nav-area.css" />
 <link rel="stylesheet" href="../styles/neat-form.css" />
@@ -68,7 +68,7 @@ if (!isset($_SESSION['uid'])) {
             </div>
         </div>
 
-        <div class="left-right-div">
+        <div class="left-right">
             <div>
                 <div class="dropdown open">
                     <div onclick="ToggleDropdown(this.parentElement)">

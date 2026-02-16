@@ -15,9 +15,9 @@
   margin-bottom: 7.5px;
 }
 
-.dropdown:hover {
+/* .dropdown:hover {
   background-color: var(--background-dark);
-}
+} */
 
 .dropdown>div:first-child {
   background-color: var(--background-dark);
