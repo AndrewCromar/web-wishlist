@@ -75,6 +75,7 @@ if (!isset($_SESSION['uid'])) {
                         <p style="font-size: smaller;">new to old</p>
                         <table class="ledger-table">
                         </table>
+                        <p style="font-size: smaller;">only showing 22 newest</p>
                     </div>
                 </div>
             </div>

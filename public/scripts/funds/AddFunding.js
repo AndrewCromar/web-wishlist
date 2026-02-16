@@ -25,12 +25,12 @@ document
   .addEventListener("submit", function (e) {
     e.preventDefault();
     const amount = document.getElementById("add_funding_amount").value;
-    AddFunding(amount);
+    AddFunding(Math.abs(amount));
   });
 
 document
   .getElementById("addFundingButton")
   .addEventListener("click", function () {
     const amount = document.getElementById("add_funding_amount").value;
-    AddFunding(amount);
+    AddFunding(Math.abs(amount));
   });

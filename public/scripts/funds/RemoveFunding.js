@@ -25,13 +25,13 @@ document
   .getElementById("removeFundingForm")
   .addEventListener("submit", function (e) {
     e.preventDefault();
-    const amount = -1 * document.getElementById("remove_funding_amount").value;
-    RemoveFunding(amount);
+    const amount = document.getElementById("remove_funding_amount").value;
+    RemoveFunding(-1 * Math.abs(amount));
   });
 
 document
   .getElementById("removeFundingButton")
   .addEventListener("click", function () {
-    const amount = -1 * document.getElementById("remove_funding_amount").value;
-    RemoveFunding(amount);
+    const amount = document.getElementById("remove_funding_amount").value;
+    RemoveFunding(-1 * Math.abs(amount));
   });
