@@ -59,7 +59,7 @@ function RenderGroup(name, groupId, groupItems, parentElement) {
     header.onclick = () => ToggleDropdown(wrapper);
     header.innerHTML = `
         <i class="fa-solid fa-caret-down"></i>
-        <p>${name} <span style="color:var(--text-light); font-size:smaller;">#${groupId}</span></p>
+        <p>${name}</p>
     `;
 
     const content = document.createElement("div");
@@ -87,8 +87,7 @@ function RenderItem(item) {
         <p>
           -&nbsp;
           <span><a href="${item.link || '#'}">${item.name}</a></span>&nbsp;
-          <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>&nbsp;
-          <span>#${item.id}</span>
+          <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>
         </p>
         <div class="progress-container" style="background: var(--background); border: solid var(--border) 2px; overflow: hidden;">
             <div class="progress-bar" style="

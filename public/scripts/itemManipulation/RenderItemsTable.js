@@ -21,6 +21,8 @@ function RenderItemsTable() {
               item.name,
               item.link,
               item.price,
+              item.weight,
+              item.bought,
               groups.find((g) => g.id === item.group_id)?.name || "N/A"
             )
           );
@@ -33,7 +35,7 @@ function RenderItemsTable() {
   });
 }
 
-function GenerateItemRow(id, name, url, price, groupId) {
+function GenerateItemRow(id, name, url, price, weight, bought, groupId) {
   const row = document.createElement("tr");
 
   const formattedPrice = price ? `$${price}` : "$0";
@@ -44,6 +46,8 @@ function GenerateItemRow(id, name, url, price, groupId) {
     <td>${name}</td>
     <td><a href="${url}" target="_blank">link</a></td>
     <td>${formattedPrice}</td>
+    <td>${weight}</td>
+    <td>${bought ? "&check;" : "&#10007;"}</td>
     <td>${displayGroup}</td>
   `;
 

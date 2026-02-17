@@ -87,6 +87,8 @@ if (!isset($_SESSION['uid'])) {
                                     <th>name</th>
                                     <th>link</th>
                                     <th>price</th>
+                                    <th>weight</th>
+                                    <th>bought</th>
                                     <th>group</th>
                                 </tr>
                             </table>
@@ -123,6 +125,7 @@ if (!isset($_SESSION['uid'])) {
                             <input type="text" id="add_link" name="add_link" placeholder="Link" required />
                             <input type="number" id="add_price" name="add_price" placeholder="Price (USD)"
                                 required />
+                            <input type="number" id="add_weight" name="add_weight" min="1" max="10" placeholder="Weight (1-10) (optional)" />
                             <input type="number" id="add_group" name="add_group" placeholder="Group ID (optional)" />
                             <button type="button" id="addItemButton">Add Item</button>
                         </form>
@@ -141,6 +144,7 @@ if (!isset($_SESSION['uid'])) {
                             <input type="text" id="edit_link" name="edit_link" placeholder="Link" required />
                             <input type="number" id="edit_price" name="edit_price" placeholder="Price (USD)"
                                 required />
+                            <input type="number" id="edit_weight" name="edit_weight" min="1" max="10" placeholder="Weight (1-10) (optional)" />
                             <input type="number" id="edit_group" name="edit_group" placeholder="Group ID"
                                 required />
                             <button type="button" id="editItemButton">Edit Item</button>

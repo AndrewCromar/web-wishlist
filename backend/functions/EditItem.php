@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../db/CreateDBConnection.php';
 
-function EditItem($uid, $itemId, $name, $link, $price, $group_id = null)
+function EditItem($uid, $itemId, $name, $link, $price, $weight, $group_id = null)
 {
     $conn = CreateDBConnection();
     
@@ -18,8 +18,8 @@ function EditItem($uid, $itemId, $name, $link, $price, $group_id = null)
         return false;
     }
     
-    $stmt = $conn->prepare("UPDATE items SET name = ?, link = ?, price = ?, group_id = ? WHERE id = ? AND uid = ?");
-    $stmt->bind_param("ssddii", $name, $link, $price, $group_id, $itemId, $uid);
+    $stmt = $conn->prepare("UPDATE items SET name = ?, link = ?, price = ?, weight = ?, group_id = ? WHERE id = ? AND uid = ?");
+    $stmt->bind_param("ssdidii", $name, $link, $price, $weight, $group_id, $itemId, $uid);
     $updateResult = $stmt->execute();
     $stmt->close();
     $conn->close();
