@@ -59,14 +59,14 @@ function RenderGroup(name, groupId, groupItems, parentElement) {
     header.onclick = () => ToggleDropdown(wrapper);
     header.innerHTML = `
         <i class="fa-solid fa-caret-down"></i>
-        <p>${name} <span style="color:var(--text-color-muted); font-size:smaller;">#${groupId}</span></p>
+        <p>${name} <span style="color:var(--text-light); font-size:smaller;">#${groupId}</span></p>
     `;
 
     const content = document.createElement("div");
     content.className = "wishlist-container";
 
     if (groupItems.length === 0) {
-        content.innerHTML = `<p style="color:var(--text-color-muted); padding:10px;">No items in this group</p>`;
+        content.innerHTML = `<p style="color:var(--text-light); padding:10px;">No items in this group</p>`;
     } else {
         groupItems.forEach(item => {
             const itemElement = RenderItem(item);
@@ -90,11 +90,11 @@ function RenderItem(item) {
           <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>&nbsp;
           <span>#${item.id}</span>
         </p>
-        <div class="progress-container" style="background: rgba(0,0,0,0.1); border-radius: 4px; overflow: hidden;">
+        <div class="progress-container" style="background: var(--background); border: solid var(--border) 2px; overflow: hidden;">
             <div class="progress-bar" style="
-                width: ${item.percentFilled}%; 
+                width: ${item.percentFilled}%;
                 height: 8px; 
-                background: ${item.isFullyFunded ? 'var(--success-color, green)' : 'var(--primary-color, blue)'};
+                background: ${item.isFullyFunded ? 'var(--success)' : 'var(--background-dark)'};
                 transition: width 0.5s ease;
             "></div>
         </div>
@@ -137,3 +137,7 @@ async function RenderWishlist() {
         console.error("An error occurred:", error);
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+	RenderWishlist();
+});
