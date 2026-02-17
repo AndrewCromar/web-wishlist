@@ -1,153 +1,139 @@
-function RenderWishlist() {
-  $.ajax({
-    url: "../api/ENDPOINT_GetUserItems.php",
-    type: "POST",
-    dataType: "json",
-    success: function (response) {
-      if (response.status === "OK") {
-        const wishlistContainer =
-          document.getElementsByClassName("wishlist-groups")[0];
-        wishlistContainer.innerHTML = null;
-
-        const { items, groups } = response.data;
-
-        const groupMap = {};
-        groups.forEach((group) => {
-          groupMap[group.id] = group.name;
-        });
-
-        const groupedItems = {};
-        items.forEach((item) => {
-          const groupId = item.group_id || "";
-          if (!groupedItems[groupId]) {
-            groupedItems[groupId] = [];
-          }
-          groupedItems[groupId].push(item);
-        });
-
-        Object.keys(groupedItems).forEach((groupId) => {
-          const groupName =
-            groupId === "ungrouped" ? "Ungrouped" : groupMap[groupId];
-          wishlistContainer.appendChild(
-            GenerateWishlistGroup(groupName, groupedItems[groupId], groupId),
-          );
-        });
-
-        groups.forEach((group) => {
-          if (!groupedItems[group.id]) {
-            wishlistContainer.appendChild(
-              GenerateEmptyWishlistGroup(group.name, group.id),
-            );
-          }
-        });
-      } else {
-        alert(response.status + " " + response.error);
-      }
-    },
-  });
+function GetAllItemData() {
+    return $.ajax({
+        url: "../api/ENDPOINT_GetUserItems.php",
+        type: "POST",
+        dataType: "json"
+    });
 }
 
-function GenerateWishlistGroup(name, items, groupId) {
-  const wrapper = document.createElement("div");
-  wrapper.className = "dropdown open";
-
-  const header = document.createElement("div");
-  header.onclick = function () {
-    ToggleDropdown(wrapper);
-  };
-
-  const caretIcon = document.createElement("i");
-  caretIcon.className = "fa-solid fa-caret-down";
-
-  const title = document.createElement("p");
-  title.appendChild(document.createTextNode(name));
-  
-  const idSpan = document.createElement("span");
-  idSpan.style.color = "var(--text-color-muted)";
-  idSpan.style.fontSize = "smaller";
-  idSpan.textContent = `#${groupId}`;
-  
-  title.appendChild(document.createTextNode("\u00A0"));
-  title.appendChild(idSpan);
-
-  header.appendChild(caretIcon);
-  header.appendChild(title);
-
-  const content = document.createElement("div");
-  content.className = "wishlist-container";
-  items.forEach((item) => {
-    content.appendChild(
-      GenerateWishlistItem(
-        item.name,
-        item.link,
-        item.price,
-        item.money_saved,
-        item.id,
-      ),
-    );
-  });
-
-  wrapper.appendChild(header);
-  wrapper.appendChild(content);
-
-  return wrapper;
+function GetNetFunds() {
+    return $.ajax({
+        url: "../api/ENDPOINT_GetTotalFunds.php",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({}),
+        dataType: "json"
+    });
 }
 
-function GenerateEmptyWishlistGroup(name, groupId) {
-  const wrapper = document.createElement("div");
-  wrapper.className = "dropdown open";
-
-  const header = document.createElement("div");
-  header.onclick = function () {
-    ToggleDropdown(wrapper);
-  };
-
-  const caretIcon = document.createElement("i");
-  caretIcon.className = "fa-solid fa-caret-down";
-
-  const title = document.createElement("p");
-  title.appendChild(document.createTextNode(name));
-  
-  const idSpan = document.createElement("span");
-  idSpan.style.color = "var(--text-color-muted)";
-  idSpan.style.fontSize = "smaller";
-  idSpan.textContent = `#${groupId}`;
-  
-  title.appendChild(document.createTextNode("\u00A0"));
-  title.appendChild(idSpan);
-
-  header.appendChild(caretIcon);
-  header.appendChild(title);
-
-  const content = document.createElement("div");
-  const emptyMessage = document.createElement("p");
-  emptyMessage.textContent = "No items in this group";
-  emptyMessage.style.color = "var(--text-color-muted)";
-  emptyMessage.style.padding = "10px";
-  content.appendChild(emptyMessage);
-
-  wrapper.appendChild(header);
-  wrapper.appendChild(content);
-
-  return wrapper;
+function CalculateItemScore(item) {
+    const now = Date.now();
+    const createdAt = new Date(item.created_at).getTime();
+    
+    const ageInDays = (now - createdAt) / (1000 * 60 * 60 * 24);
+    
+    return item.weight * (ageInDays + 0.1);
 }
 
-function GenerateWishlistItem(name, url, price, money_saved, id) {
-  const percent = Math.min(price > 0 ? Math.round((money_saved / price) * 100) : 0, 100);
+function RenderData(items, groups) {
+    const wishlistContainer = document.getElementsByClassName("wishlist-groups")[0];
+    wishlistContainer.innerHTML = "";
 
-  const wrapper = document.createElement("div");
+    const groupMap = {};
+    groups.forEach(g => groupMap[g.id] = g.name);
 
-  wrapper.innerHTML = `
-    <p>
-      -&nbsp;
-      <span><a href="${url}">${name}</a></span>&nbsp;
-      <span>$${money_saved} / $${price} (${percent}%)</span>&nbsp;
-      <span>#${id}</span>
-    </p>
-    <div><div style="width:${percent}%;"></div></div>
-  `;
+    const groupedItems = {};
+    items.forEach(item => {
+        const gid = item.group_id || "ungrouped";
+        if (!groupedItems[gid]) groupedItems[gid] = [];
+        groupedItems[gid].push(item);
+    });
 
-  return wrapper;
+    Object.keys(groupedItems).forEach(gid => {
+        const name = gid === "ungrouped" ? "Ungrouped" : (groupMap[gid] || `Group ${gid}`);
+        RenderGroup(name, gid, groupedItems[gid], wishlistContainer);
+    });
+
+    groups.forEach(group => {
+        if (!groupedItems[group.id]) {
+            RenderGroup(group.name, group.id, [], wishlistContainer);
+        }
+    });
 }
 
-RenderWishlist();
+function RenderGroup(name, groupId, groupItems, parentElement) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "dropdown open";
+
+    const header = document.createElement("div");
+    header.onclick = () => ToggleDropdown(wrapper);
+    header.innerHTML = `
+        <i class="fa-solid fa-caret-down"></i>
+        <p>${name} <span style="color:var(--text-color-muted); font-size:smaller;">#${groupId}</span></p>
+    `;
+
+    const content = document.createElement("div");
+    content.className = "wishlist-container";
+
+    if (groupItems.length === 0) {
+        content.innerHTML = `<p style="color:var(--text-color-muted); padding:10px;">No items in this group</p>`;
+    } else {
+        groupItems.forEach(item => {
+            const itemElement = RenderItem(item);
+            content.appendChild(itemElement);
+        });
+    }
+
+    wrapper.appendChild(header);
+    wrapper.appendChild(content);
+    parentElement.appendChild(wrapper);
+}
+
+function RenderItem(item) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "wishlist-item-wrapper";
+
+    wrapper.innerHTML = `
+        <p>
+          -&nbsp;
+          <span><a href="${item.link || '#'}">${item.name}</a></span>&nbsp;
+          <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>&nbsp;
+          <span>#${item.id}</span>
+        </p>
+        <div class="progress-container" style="background: rgba(0,0,0,0.1); border-radius: 4px; overflow: hidden;">
+            <div class="progress-bar" style="
+                width: ${item.percentFilled}%; 
+                height: 8px; 
+                background: ${item.isFullyFunded ? 'var(--success-color, green)' : 'var(--primary-color, blue)'};
+                transition: width 0.5s ease;
+            "></div>
+        </div>
+    `;
+
+    return wrapper;
+}
+
+async function RenderWishlist() {
+    try {
+        const itemResponse = await GetAllItemData();
+        const fundsResponse = await GetNetFunds();
+
+        if (itemResponse.status !== "OK" || fundsResponse.status !== "OK") {
+            console.error("Data fetch failed");
+            return;
+        }
+
+        const { items, groups } = itemResponse.data;
+        const totalFunds = fundsResponse.data;
+
+        const scores = items.map(item => CalculateItemScore(item));
+        const totalScore = scores.reduce((a, b) => a + b, 0);
+
+        const calculatedItems = items.map((item, index) => {
+            const share = totalScore > 0 ? (scores[index] / totalScore) : 0;
+            const itemFunds = totalFunds * share;
+            const itemPrice = parseFloat(item.price) || 0;
+            
+            return {
+                ...item,
+                calculatedFunds: itemFunds.toFixed(2),
+                percentFilled: itemPrice > 0 ? Math.min((itemFunds / itemPrice) * 100, 100).toFixed(1) : 0,
+                isFullyFunded: itemFunds >= itemPrice
+            };
+        });
+
+        RenderData(calculatedItems, groups);
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
+}
