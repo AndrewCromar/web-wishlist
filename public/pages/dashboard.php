@@ -53,9 +53,16 @@ if (!isset($_SESSION['uid'])) {
                 <p>
                     <span><a href="dashboard.php">Dashboard</a></span>
                     /
-                    <span><a href="funds.php">Fund Management</a></span>
-                    /
                     <span><a onclick="Logout();">Logout</a></span>
+                </p>
+                <p>
+                    <span>Management</span>
+                    :
+                    <span><a href="funds.php">Funds</a></span>
+                    /
+                    <span><a href="items.php">Items</a></span>
+                    /
+                    <span><a href="groups.php">Groups</a></span>
                 </p>
             </div>
         </div>
@@ -75,128 +82,13 @@ if (!isset($_SESSION['uid'])) {
                 </ul>
             </div>
         </div>
-        <div class="left-right">
-            <div>
-                <div class="dropdown open">
-                    <div onclick="ToggleDropdown(this.parentElement)">
-                        <i class="fa-solid fa-caret-down"></i>
-                        <p>Wishlist</p>
-                    </div>
-                    <div class="wishlist-groups">
-                    </div>
+        <div>
+            <div class="dropdown open">
+                <div onclick="ToggleDropdown(this.parentElement)">
+                    <i class="fa-solid fa-caret-down"></i>
+                    <p>Wishlist</p>
                 </div>
-            </div>
-            <div>
-                <div class="dropdown open">
-                    <div onclick="ToggleDropdown(this.parentElement)">
-                        <i class="fa-solid fa-caret-down"></i>
-                        <p>Item Manipulation</p>
-                    </div>
-                    <div>
-                        <div class="dropdown open">
-                            <div onclick="ToggleDropdown(this.parentElement)">
-                                <i class="fa-solid fa-caret-down"></i>
-                                <p>Add Item</p>
-                            </div>
-                            <div>
-                                <form id="addItemForm" class="neatForm">
-                                    <input type="text" id="add_name" name="add_name" placeholder="Name" required />
-                                    <input type="text" id="add_link" name="add_link" placeholder="Link" required />
-                                    <input type="number" id="add_price" name="add_price" placeholder="Price (USD)"
-                                        required />
-                                    <button type="button" id="addItemButton">Add Item</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="dropdown open">
-                            <div onclick="ToggleDropdown(this.parentElement)">
-                                <i class="fa-solid fa-caret-down"></i>
-                                <p>Edit Item</p>
-                            </div>
-                            <div>
-                                <form id="editItemForm" class="neatForm">
-                                    <input type="number" id="edit_id" name="edit_id" placeholder="Item ID to Edit"
-                                        required />
-                                    <input type="text" id="edit_name" name="edit_name" placeholder="Name" required />
-                                    <input type="text" id="edit_link" name="edit_link" placeholder="Link" required />
-                                    <input type="number" id="edit_price" name="edit_price" placeholder="Price (USD)"
-                                        required />
-                                    <input type="number" id="edit_group" name="edit_group" placeholder="Group ID"
-                                        required />
-                                    <button type="button" id="editItemButton">Edit Item</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="dropdown open">
-                            <div onclick="ToggleDropdown(this.parentElement)">
-                                <i class="fa-solid fa-caret-down"></i>
-                                <p>Remove Item</p>
-                            </div>
-                            <div>
-                                <form id="removeItemForm" class="neatForm">
-                                    <input type="number" id="remove_id" name="remove_id" placeholder="Item ID to Remove"
-                                        required />
-                                    <button type="button" id="removeItemButton">Remove Item</button>
-                                </form>
-                                <form id="removeBoughtForm" class="neatForm">
-                                    <button type="button" id="removeBoughtButton">Remove Bought Items</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dropdown open">
-                    <div onclick="ToggleDropdown(this.parentElement)">
-                        <i class="fa-solid fa-caret-down"></i>
-                        <p>Group Manipulation</p>
-                    </div>
-                    <div>
-                        <div class="dropdown open">
-                            <div onclick="ToggleDropdown(this.parentElement)">
-                                <i class="fa-solid fa-caret-down"></i>
-                                <p>Add Group</p>
-                            </div>
-                            <div>
-                                <form id="addGroupForm" class="neatForm">
-                                    <input type="text" id="add_group_name" name="add_group_name"
-                                        placeholder="Group Name" required />
-                                    <button type="button" id="addGroupButton">Add Group</button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="dropdown open">
-                            <div onclick="ToggleDropdown(this.parentElement)">
-                                <i class="fa-solid fa-caret-down"></i>
-                                <p>Edit Group</p>
-                            </div>
-                            <div>
-                                <form id="editGroupForm" class="neatForm">
-                                    <input type="number" id="edit_group_id" name="edit_group_id"
-                                        placeholder="Group ID to Edit" required />
-                                    <input type="text" id="edit_group_name" name="edit_group_name"
-                                        placeholder="Group Name" required />
-                                    <button type="button" id="editGroupButton">Edit Group</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="dropdown open">
-                            <div onclick="ToggleDropdown(this.parentElement)">
-                                <i class="fa-solid fa-caret-down"></i>
-                                <p>Remove Group</p>
-                            </div>
-                            <div>
-                                <form id="removeGroupForm" class="neatForm">
-                                    <input type="number" id="remove_group_id" name="remove_group_id"
-                                        placeholder="Group ID to Remove" required />
-                                    <button type="button" id="removeGroupButton">Remove Group</button>
-                                </form>
-                                <form class="neatForm">
-                                    <button id="removeUnusedGroupsButton">Remove Unused Groups</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <div class="wishlist-groups">
                 </div>
             </div>
         </div>
@@ -207,12 +99,3 @@ if (!isset($_SESSION['uid'])) {
 <script src="../scripts/account/Logout.js"></script>
 <script src="../scripts/account/RenderEmail.js"></script>
 <script src="../scripts/RenderWishlist.js"></script>
-<script src="../scripts/itemManipulation/AddItem.js"></script>
-<script src="../scripts/itemManipulation/RemoveItem.js"></script>
-<script src="../scripts/itemManipulation/RemoveBoughtItems.js"></script>
-<script src="../scripts/itemManipulation/AddFunding.js"></script>
-<script src="../scripts/itemManipulation/EditItem.js"></script>
-<script src="../scripts/groupManipulation/AddGroup.js"></script>
-<script src="../scripts/groupManipulation/EditGroup.js"></script>
-<script src="../scripts/groupManipulation/DeleteGroup.js"></script>
-<script src="../scripts/groupManipulation/DeleteUnusedGroups.js"></script>
