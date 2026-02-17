@@ -7,7 +7,7 @@ function FetchAndRenderLedger() {
 		dataType: "json",
 		success: function (response) {
 			if (response.status === "OK") {
-				const rows = (response.data || []).slice(0, 22);
+				const rows = (response.data || []).slice(0, 100);
 				const tables = document.getElementsByClassName("ledger-table");
 				for (let t = 0; t < tables.length; t++) {
 					const table = tables[t];

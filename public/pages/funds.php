@@ -35,6 +35,7 @@ if (!isset($_SESSION['uid'])) {
 <link rel="stylesheet" href="../styles/neat-form.css" />
 <link rel="stylesheet" href="../styles/root.css" />
 <link rel="stylesheet" href="../styles/wishlist.css" />
+<link rel="stylesheet" href="../styles/scroll-section.css" />
 
 <div class="content">
     <div>
@@ -73,9 +74,10 @@ if (!isset($_SESSION['uid'])) {
                         </p>
                         <hr>
                         <p style="font-size: smaller;">new to old</p>
-                        <table class="ledger-table">
-                        </table>
-                        <p style="font-size: smaller;">only showing 22 newest</p>
+                        <div class="scroll-section">
+                            <table class="ledger-table">
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
