@@ -2,7 +2,7 @@
 
 A small web project for managing a personal wishlist of items that you want to buy. Manage your wishlist by organzing items into groups, adding funding evenly to all items. Mark an item as purchased when it fills and mark it a purchased to move out out of the way.
 
-- Live Site: [https://wishlist.andrewcromar.org/pages/](https://wishlist.andrewcromar.org/pages/)
+- Live Site: [https://wishlist.andrewcromar.org/pages/login.php](https://wishlist.andrewcromar.org/pages/login.php)
 
 ## Features
 
@@ -20,7 +20,7 @@ A small web project for managing a personal wishlist of items that you want to b
 - Use [DatabaseSetup.sql](backend/DatabaseSetup.sql) to setup the database.
 - Create a user account that has acess to the database.
 - Add the user infomation to [global.php](backend/config/global.php).
-- Open [http://localhost/web-wishlist/pages/](http://localhost/web-wishlist/pages/).
+- Open [http://localhost/web-wishlist/pages/login.php](http://localhost/web-wishlist/pages/login.php).
 - BOOM! Its working!
 
 ## Contributions are Welcomed
