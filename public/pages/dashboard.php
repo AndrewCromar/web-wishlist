@@ -67,16 +67,10 @@ if (!isset($_SESSION['uid'])) {
             <div>
                 <ul style="padding-left: 20px;">
                     <li>
-                        Email: "
-                        not working
-                        ".
+                        Email: "<span class="email-display"></span>".
                     </li>
                     <li>
-                        UID: "
-                        <?php
-                        echo $_SESSION['uid'];
-                        ?>
-                        ".
+                        UID: "<?php echo $_SESSION['uid']; ?>".
                     </li>
                 </ul>
             </div>
@@ -213,6 +207,7 @@ if (!isset($_SESSION['uid'])) {
 
 <script src="../scripts/Dropdown.js"></script>
 <script src="../scripts/account/Logout.js"></script>
+<script src="../scripts/account/RenderEmail.js"></script>
 <script src="../scripts/RenderWishlist.js"></script>
 <script src="../scripts/itemManipulation/AddItem.js"></script>
 <script src="../scripts/itemManipulation/RemoveItem.js"></script>
