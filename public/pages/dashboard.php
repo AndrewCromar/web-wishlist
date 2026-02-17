@@ -93,7 +93,6 @@ if (!isset($_SESSION['uid'])) {
                         <p>Item Manipulation</p>
                     </div>
                     <div>
-
                         <div class="dropdown open">
                             <div onclick="ToggleDropdown(this.parentElement)">
                                 <i class="fa-solid fa-caret-down"></i>
@@ -144,7 +143,6 @@ if (!isset($_SESSION['uid'])) {
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="dropdown open">

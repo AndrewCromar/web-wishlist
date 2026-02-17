@@ -41,7 +41,7 @@ if (!isset($_SESSION['uid'])) {
     <!-- TITLE -->
     <div>
         <div class="center-center">
-            <h1>FUND MANAGEMENT</h1>
+            <h1>ITEM MANAGEMENT</h1>
         </div>
     </div>
     <div>
@@ -69,23 +69,24 @@ if (!isset($_SESSION['uid'])) {
                 </p>
             </div>
         </div>
-        <!-- LEDGER -->
+        <!-- LIST -->
         <div class="left-right">
-            <div style="flex: none; width: 250px;">
+            <div>
                 <div class="dropdown open">
                     <div onclick="ToggleDropdown(this.parentElement)">
                         <i class="fa-solid fa-caret-down"></i>
-                        <p>Ledger</p>
+                        <p>Items</p>
                     </div>
                     <div>
-                        <p>
-                            <span style="font-weight: bold;">Net Total:</span>
-                            <span class="net-funds"></span>
-                        </p>
-                        <hr>
-                        <p style="font-size: smaller;">new to old</p>
                         <div class="scroll-section">
-                            <table class="ledger-table">
+                            <table class="items-table" style="width: 100%; text-align: left;">
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>link</th>
+                                    <th>price</th>
+                                    <th>group</th>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -96,26 +97,50 @@ if (!isset($_SESSION['uid'])) {
                 <div class="dropdown open">
                     <div onclick="ToggleDropdown(this.parentElement)">
                         <i class="fa-solid fa-caret-down"></i>
-                        <p>Add Funds</p>
+                        <p>Add Item</p>
                     </div>
                     <div>
-                        <form id="addFundingForm" class="neatForm">
-                            <input type="number" id="add_funding_amount" name="add_funding_amount"
-                                placeholder="Amount to Add (USD)" required />
-                            <button type="button" id="addFundingButton">Add Funding</button>
+                        <form id="addItemForm" class="neatForm">
+                            <input type="text" id="add_name" name="add_name" placeholder="Name" required />
+                            <input type="text" id="add_link" name="add_link" placeholder="Link" required />
+                            <input type="number" id="add_price" name="add_price" placeholder="Price (USD)"
+                                required />
+                            <button type="button" id="addItemButton">Add Item</button>
                         </form>
                     </div>
                 </div>
                 <div class="dropdown open">
                     <div onclick="ToggleDropdown(this.parentElement)">
                         <i class="fa-solid fa-caret-down"></i>
-                        <p>Remove Funds</p>
+                        <p>Edit Item</p>
                     </div>
                     <div>
-                        <form id="removeFundingForm" class="neatForm">
-                            <input type="number" id="remove_funding_amount" name="remove_funding_amount"
-                                placeholder="Amount to Remove (USD)" required />
-                            <button type="button" id="removeFundingButton">Remove Funding</button>
+                        <form id="editItemForm" class="neatForm">
+                            <input type="number" id="edit_id" name="edit_id" placeholder="Item ID to Edit"
+                                required />
+                            <input type="text" id="edit_name" name="edit_name" placeholder="Name" required />
+                            <input type="text" id="edit_link" name="edit_link" placeholder="Link" required />
+                            <input type="number" id="edit_price" name="edit_price" placeholder="Price (USD)"
+                                required />
+                            <input type="number" id="edit_group" name="edit_group" placeholder="Group ID"
+                                required />
+                            <button type="button" id="editItemButton">Edit Item</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="dropdown open">
+                    <div onclick="ToggleDropdown(this.parentElement)">
+                        <i class="fa-solid fa-caret-down"></i>
+                        <p>Remove Item</p>
+                    </div>
+                    <div>
+                        <form id="removeItemForm" class="neatForm">
+                            <input type="number" id="remove_id" name="remove_id" placeholder="Item ID to Remove"
+                                required />
+                            <button type="button" id="removeItemButton">Remove Item</button>
+                        </form>
+                        <form id="removeBoughtForm" class="neatForm">
+                            <button type="button" id="removeBoughtButton">Remove Bought Items</button>
                         </form>
                     </div>
                 </div>
@@ -126,7 +151,8 @@ if (!isset($_SESSION['uid'])) {
 
 <script src="../scripts/Dropdown.js"></script>
 <script src="../scripts/account/Logout.js"></script>
-<script src="../scripts/funds/AddFunding.js"></script>
-<script src="../scripts/funds/RemoveFunding.js"></script>
-<script src="../scripts/funds/RenderNetFunds.js"></script>
-<script src="../scripts/funds/RenderLedger.js"></script>
+<script src="../scripts/itemManipulation/AddItem.js"></script>
+<script src="../scripts/itemManipulation/RemoveItem.js"></script>
+<script src="../scripts/itemManipulation/EditItem.js"></script>
+<script src="../scripts/itemManipulation/RemoveBoughtItems.js"></script>
+<script src="../scripts/itemManipulation/RenderItemsTable.js"></script>
