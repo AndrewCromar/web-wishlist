@@ -38,6 +38,7 @@ if (!isset($_SESSION['uid'])) {
 <link rel="stylesheet" href="../styles/scroll-section.css" />
 
 <div class="content">
+    <!-- TITLE -->
     <div>
         <div class="center-center">
             <h1>FUND MANAGEMENT</h1>
@@ -45,6 +46,7 @@ if (!isset($_SESSION['uid'])) {
     </div>
     <div>
         <br>
+        <!-- NAVIGATION -->
         <div class="dropdown open">
             <div onclick="ToggleDropdown(this.parentElement)">
                 <i class="fa-solid fa-caret-down"></i>
@@ -54,12 +56,20 @@ if (!isset($_SESSION['uid'])) {
                 <p>
                     <span><a href="dashboard.php">Dashboard</a></span>
                     /
-                    <span><a href="funds.php">Fund Management</a></span>
-                    /
                     <span><a onclick="Logout();">Logout</a></span>
+                </p>
+                <p>
+                    <span>Management</span>
+                    :
+                    <span><a href="funds.php">Funds</a></span>
+                    /
+                    <span><a href="funds.php">Items</a></span>
+                    /
+                    <span><a href="funds.php">Groups</a></span>
                 </p>
             </div>
         </div>
+        <!-- FORMS -->
         <div class="left-right">
             <div style="flex: none; width: 250px;">
                 <div class="dropdown open">
