@@ -22,13 +22,17 @@ $uid = $_SESSION['uid'];
 $name = $data['name'];
 $link = $data['link'];
 $price = floatval($data['price']);
+$group_id = null;
+if (isset($data['group_id']) && $data['group_id'] !== '') {
+    $group_id = intval($data['group_id']);
+}
 
 if (empty($name)) {
     echo json_encode(["status" => "fail", "error" => "ERROR011"]);
     exit;
 }
 
-$result = AddItem($uid, $name, $link, $price);
+$result = AddItem($uid, $name, $link, $price, $group_id);
 
 if ($result === false) {
     echo json_encode(["status" => "fail", "error" => "ERROR013"]);
