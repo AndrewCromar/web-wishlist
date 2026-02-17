@@ -56,6 +56,8 @@ if (!isset($_SESSION['uid'])) {
                 <p>
                     <span><a href="dashboard.php">Dashboard</a></span>
                     /
+                    <span><a href="account.php">Account</a></span>
+                    /
                     <span><a onclick="Logout();">Logout</a></span>
                 </p>
                 <p>
