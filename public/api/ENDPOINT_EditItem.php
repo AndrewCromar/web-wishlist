@@ -23,7 +23,7 @@ $uid = $_SESSION['uid'];
 $itemId = intval($data['itemId']);
 $name = $data['name'];
 $link = $data['link'];
-$price = floatval($data['price']);
+$price = intval($data['price']);
 $weight = max(1, min(10, $data['weight']));
 $group_id = isset($data['groupId']) && $data['groupId'] !== '' ? intval($data['groupId']) : null;
 
@@ -32,7 +32,6 @@ if ($itemId <= 0 || empty($name)) {
     exit;
 }
 
-// Verify group ownership if group_id is provided
 if ($group_id !== null && !VerifyGroupOwnership($uid, $group_id)) {
     echo json_encode(["status" => "fail", "error" => "ERROR011"]);
     exit;

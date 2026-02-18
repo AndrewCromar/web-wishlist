@@ -21,7 +21,7 @@ if (!isset($data['name']) || !isset($data['link']) || !isset($data['price'])) {
 $uid = $_SESSION['uid'];
 $name = $data['name'];
 $link = $data['link'];
-$price = floatval($data['price']);
+$price = intval($data['price']);
 $weight = max(1, min(10, $weight));
 $group_id = null;
 if (isset($data['group_id']) && $data['group_id'] !== '') {
