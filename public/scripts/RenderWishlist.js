@@ -34,26 +34,49 @@ function RenderData(items, groups) {
 
     const groupedItems = {};
     items.forEach(item => {
-        const gid = item.group_id || "ungrouped";
-        if (!groupedItems[gid]) groupedItems[gid] = [];
-        groupedItems[gid].push(item);
-    });
-
-    Object.keys(groupedItems).forEach(gid => {
-        const name = gid === "ungrouped" ? "Ungrouped" : (groupMap[gid] || `Group ${gid}`);
-        RenderGroup(name, gid, groupedItems[gid], wishlistContainer);
-    });
-
-    groups.forEach(group => {
-        if (!groupedItems[group.id]) {
-            RenderGroup(group.name, group.id, [], wishlistContainer);
+        if (item.bought) {
+            if (!groupedItems.bought) groupedItems.bought = [];
+            groupedItems.bought.push(item);
+        } else {
+            const gid = item.group_id || "ungrouped";
+            if (!groupedItems[gid]) groupedItems[gid] = [];
+            groupedItems[gid].push(item);
         }
     });
+
+    const renderEntry = (gid) => {
+        let name;
+        if (gid === "ungrouped") {
+            name = "Ungrouped";
+        } else if (gid === "bought") {
+            name = "Bought";
+        } else {
+            name = groupMap[gid] || `Group ${gid}`;
+        }
+        RenderGroup(name, gid, groupedItems[gid] || [], wishlistContainer);
+        delete groupedItems[gid];
+    };
+
+    groups.forEach(group => {
+        if (groupedItems[group.id]) {
+            renderEntry(group.id);
+        }
+    });
+
+    if (groupedItems.ungrouped) {
+        renderEntry("ungrouped");
+    }
+
+    if (groupedItems.bought) {
+        renderEntry("bought");
+    }
+
+    Object.keys(groupedItems).forEach(gid => renderEntry(gid));
 }
 
 function RenderGroup(name, groupId, groupItems, parentElement) {
     const wrapper = document.createElement("div");
-    wrapper.className = "dropdown open";
+    wrapper.className = "dropdown" + (groupId === "bought" ? "" : " open");
 
     const header = document.createElement("div");
     header.onclick = () => ToggleDropdown(wrapper);
@@ -83,21 +106,31 @@ function RenderItem(item) {
     const wrapper = document.createElement("div");
     wrapper.className = "wishlist-item-wrapper";
 
-    wrapper.innerHTML = `
-        <p>
-          -&nbsp;
-          <span><a href="${item.link || '#'}">${item.name}</a></span>&nbsp;
-          <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>
-        </p>
-        <div class="progress-container" style="background: var(--background); border: solid var(--border) 2px; overflow: hidden;">
-            <div class="progress-bar" style="
-                width: ${item.percentFilled}%;
-                height: 8px; 
-                background: ${item.isFullyFunded ? 'var(--success)' : 'var(--background-dark)'};
-                transition: width 0.5s ease;
-            "></div>
-        </div>
-    `;
+    if (item.bought) {
+        wrapper.innerHTML = `
+            <p>
+              -&nbsp;
+              <span><a href="${item.link || '#'}">${item.name}</a></span>&nbsp;
+              <span><em>bought</em></span>
+            </p>
+        `;
+    } else {
+        wrapper.innerHTML = `
+            <p>
+              -&nbsp;
+              <span><a href="${item.link || '#'}">${item.name}</a></span>&nbsp;
+              <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>
+            </p>
+            <div class="progress-container" style="background: var(--background); border: solid var(--border) 2px; overflow: hidden;">
+                <div class="progress-bar" style="
+                    width: ${item.percentFilled}%;
+                    height: 8px; 
+                    background: ${item.isFullyFunded ? 'var(--success)' : 'var(--background-dark)'};
+                    transition: width 0.5s ease;
+                "></div>
+            </div>
+        `;
+    }
 
     return wrapper;
 }
@@ -115,7 +148,7 @@ async function RenderWishlist() {
         const { items, groups } = itemResponse.data;
         const totalFunds = fundsResponse.data;
 
-        const scores = items.map(item => CalculateItemScore(item));
+        const scores = items.map(item => item.bought ? 0 : CalculateItemScore(item));
         const totalScore = scores.reduce((a, b) => a + b, 0);
 
         const calculatedItems = items.map((item, index) => {
@@ -125,9 +158,9 @@ async function RenderWishlist() {
             
             return {
                 ...item,
-                calculatedFunds: itemFunds.toFixed(2),
-                percentFilled: itemPrice > 0 ? Math.min((itemFunds / itemPrice) * 100, 100).toFixed(1) : 0,
-                isFullyFunded: itemFunds >= itemPrice
+                calculatedFunds: item.bought ? '0.00' : itemFunds.toFixed(2),
+                percentFilled: item.bought ? 100 : (itemPrice > 0 ? Math.min((itemFunds / itemPrice) * 100, 100).toFixed(1) : 0),
+                isFullyFunded: item.bought ? true : (itemFunds >= itemPrice)
             };
         });
 
