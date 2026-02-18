@@ -21,7 +21,7 @@ if (!isset($data['name']) || !isset($data['link']) || !isset($data['price'])) {
 $uid = $_SESSION['uid'];
 $name = $data['name'];
 $link = $data['link'];
-$price = intval($data['price']);
+$price = floatval($data['price']);
 
 $weight = 1;
 if (isset($data['weight'])) {

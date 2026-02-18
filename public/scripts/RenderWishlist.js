@@ -16,6 +16,32 @@ function GetNetFunds() {
     });
 }
 
+function MarkBought(itemId, amount) {
+    const payload = { item_id: itemId };
+    if (typeof amount !== 'undefined' && amount !== null) {
+        payload.amount = amount;
+    }
+    return $.ajax({
+        url: "../api/ENDPOINT_MarkItemBought.php",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(payload),
+        dataType: "json"
+    });
+}
+
+function MarkBoughtHandler(itemId, amount) {
+    MarkBought(itemId, amount).done(function(resp) {
+        if (resp.status === "OK") {
+            location.reload();
+        } else {
+            alert("Failed to mark bought: " + (resp.error || resp.message));
+        }
+    }).fail(function() {
+        alert("Network error marking item bought");
+    });
+}
+
 function CalculateItemScore(item) {
     const now = Date.now();
     const createdAt = new Date(item.created_at).getTime();
@@ -49,7 +75,7 @@ function RenderData(items, groups) {
         if (gid === "ungrouped") {
             name = "Ungrouped";
         } else if (gid === "bought") {
-            name = "Bought";
+            name = "Bought Items";
         } else {
             name = groupMap[gid] || `Group ${gid}`;
         }
@@ -115,10 +141,16 @@ function RenderItem(item) {
             </p>
         `;
     } else {
+        // optionally include mark-bought link for fully funded items
+        let boughtLink = "";
+        if (item.isFullyFunded) {
+            // pass calculatedFunds so server can deduct exact amount (may differ from price)
+            boughtLink = `&nbsp;<a href="#" onclick="MarkBoughtHandler(${item.id}, ${item.calculatedFunds}); return false;" class="mark-bought">mark bought</a>`;
+        }
         wrapper.innerHTML = `
             <p>
               -&nbsp;
-              <span><a href="${item.link || '#'}">${item.name}</a></span>&nbsp;
+              <span><a href="${item.link || '#'}">${item.name}</a></span>${boughtLink}&nbsp;
               <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>
             </p>
             <div class="progress-container" style="background: var(--background); border: solid var(--border) 2px; overflow: hidden;">
