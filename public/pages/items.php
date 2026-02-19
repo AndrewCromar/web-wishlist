@@ -174,9 +174,9 @@ if (!isset($_SESSION['uid'])) {
 
 <script src="../scripts/Dropdown.js"></script>
 <script src="../scripts/account/Logout.js"></script>
-<script src="../scripts/itemManipulation/AddItem.js"></script>
-<script src="../scripts/itemManipulation/RemoveItem.js"></script>
-<script src="../scripts/itemManipulation/EditItem.js"></script>
-<script src="../scripts/itemManipulation/RemoveBoughtItems.js"></script>
-<script src="../scripts/itemManipulation/RenderItemsTable.js"></script>
-<script src="../scripts/groupManipulation/RenderGroupsTable.js"></script>
+<script src="../scripts/items/AddItem.js"></script>
+<script src="../scripts/items/RemoveItem.js"></script>
+<script src="../scripts/items/EditItem.js"></script>
+<script src="../scripts/items/RemoveBoughtItems.js"></script>
+<script src="../scripts/items/RenderItemsTable.js"></script>
+<script src="../scripts/groups/RenderGroupsTable.js"></script>

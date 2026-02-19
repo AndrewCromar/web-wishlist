@@ -141,7 +141,7 @@ if (!isset($_SESSION['uid'])) {
 
 <script src="../scripts/Dropdown.js"></script>
 <script src="../scripts/account/Logout.js"></script>
-<script src="../scripts/groupManipulation/AddGroup.js"></script>
-<script src="../scripts/groupManipulation/EditGroup.js"></script>
-<script src="../scripts/groupManipulation/DeleteGroup.js"></script>
-<script src="../scripts/groupManipulation/RenderGroupsTable.js"></script>
+<script src="../scripts/groups/AddGroup.js"></script>
+<script src="../scripts/groups/EditGroup.js"></script>
+<script src="../scripts/groups/DeleteGroup.js"></script>
+<script src="../scripts/groups/RenderGroupsTable.js"></script>
