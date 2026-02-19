@@ -141,10 +141,8 @@ function RenderItem(item) {
             </p>
         `;
     } else {
-        // optionally include mark-bought link for fully funded items
         let boughtLink = "";
         if (item.isFullyFunded) {
-            // pass calculatedFunds so server can deduct exact amount (may differ from price)
             boughtLink = `&nbsp;<a href="#" onclick="MarkBoughtHandler(${item.id}, ${item.calculatedFunds}); return false;" class="mark-bought">mark bought</a>`;
         }
         wrapper.innerHTML = `
@@ -171,31 +169,67 @@ async function RenderWishlist() {
     try {
         const itemResponse = await GetAllItemData();
         const fundsResponse = await GetNetFunds();
-
         if (itemResponse.status !== "OK" || fundsResponse.status !== "OK") {
             console.error("Data fetch failed");
             return;
         }
-
         const { items, groups } = itemResponse.data;
         const totalFunds = fundsResponse.data;
-
-        const scores = items.map(item => item.bought ? 0 : CalculateItemScore(item));
-        const totalScore = scores.reduce((a, b) => a + b, 0);
-
-        const calculatedItems = items.map((item, index) => {
-            const share = totalScore > 0 ? (scores[index] / totalScore) : 0;
-            const itemFunds = totalFunds * share;
-            const itemPrice = parseFloat(item.price) || 0;
-            
+        const activeItems = items.filter(i => !i.bought);
+        const scores = activeItems.map(CalculateItemScore);
+        const prices = activeItems.map(i => parseFloat(i.price) || 0);
+        const n = activeItems.length;
+        const allocations = new Array(n).fill(0);
+        let remainingFunds = totalFunds;
+        const remainingSet = new Set();
+        for (let i = 0; i < n; i++) {
+            if (prices[i] === 0) continue;
+            remainingSet.add(i);
+        }
+        while (remainingFunds > 0 && remainingSet.size > 0) {
+            let totalScore = 0;
+            remainingSet.forEach(i => { totalScore += scores[i]; });
+            if (totalScore === 0) break;
+            let allocatedThisRound = 0;
+            const toRemove = [];
+            remainingSet.forEach(i => {
+                const share = scores[i] / totalScore;
+                let desired = remainingFunds * share;
+                const cap = prices[i] - allocations[i];
+                if (desired >= cap) {
+                    allocations[i] += cap;
+                    allocatedThisRound += cap;
+                    toRemove.push(i);
+                } else {
+                    allocations[i] += desired;
+                    allocatedThisRound += desired;
+                }
+            });
+            toRemove.forEach(i => remainingSet.delete(i));
+            if (allocatedThisRound <= 0) break;
+            remainingFunds -= allocatedThisRound;
+        }
+        const calculatedItems = items.map(item => {
+            if (item.bought) {
+                return {
+                    ...item,
+                    calculatedFunds: '0.00',
+                    percentFilled: 100,
+                    isFullyFunded: true
+                };
+            }
+            const idx = activeItems.indexOf(item);
+            let alloc = 0;
+            if (idx !== -1) alloc = allocations[idx];
+            const price = parseFloat(item.price) || 0;
+            const percent = price > 0 ? Math.min((alloc / price) * 100, 100).toFixed(1) : 0;
             return {
                 ...item,
-                calculatedFunds: item.bought ? '0.00' : itemFunds.toFixed(2),
-                percentFilled: item.bought ? 100 : (itemPrice > 0 ? Math.min((itemFunds / itemPrice) * 100, 100).toFixed(1) : 0),
-                isFullyFunded: item.bought ? true : (itemFunds >= itemPrice)
+                calculatedFunds: alloc.toFixed(2),
+                percentFilled: percent,
+                isFullyFunded: alloc >= price
             };
         });
-
         RenderData(calculatedItems, groups);
     } catch (error) {
         console.error("An error occurred:", error);
