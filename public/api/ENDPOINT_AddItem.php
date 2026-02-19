@@ -27,7 +27,7 @@ $weight = 1;
 if (isset($data['weight'])) {
     $weight = intval($data['weight']);
 }
-$weight = max(1, min(10, $weight));
+$weight = max(1, min(100, $weight));
 
 $group_id = null;
 if (isset($data['group_id']) && $data['group_id'] !== '') {

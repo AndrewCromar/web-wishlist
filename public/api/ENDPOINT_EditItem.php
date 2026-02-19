@@ -24,7 +24,7 @@ $itemId = intval($data['itemId']);
 $name = $data['name'];
 $link = $data['link'];
 $price = intval($data['price']);
-$weight = max(1, min(10, $data['weight']));
+$weight = max(1, min(100, $data['weight']));
 $group_id = isset($data['groupId']) && $data['groupId'] !== '' ? intval($data['groupId']) : null;
 
 if ($itemId <= 0 || empty($name)) {
