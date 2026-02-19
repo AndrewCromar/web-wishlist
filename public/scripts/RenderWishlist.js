@@ -143,7 +143,7 @@ function RenderItem(item) {
     } else {
         let boughtLink = "";
         if (item.isFullyFunded) {
-            boughtLink = `&nbsp;<a href="#" onclick="MarkBoughtHandler(${item.id}, ${item.calculatedFunds}); return false;" class="mark-bought">mark bought</a>`;
+            boughtLink = `&nbsp;<button onclick="MarkBoughtHandler(${item.id}, ${item.calculatedFunds}); return false;" class="mark-bought">mark bought</button>`;
         }
         wrapper.innerHTML = `
             <p>
