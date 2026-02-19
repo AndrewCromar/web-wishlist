@@ -54,5 +54,4 @@ function GenerateItemRow(id, name, url, price, weight, bought, groupId) {
   return row;
 }
 
-// Initialize the render
 RenderItemsTable();
