@@ -29,7 +29,8 @@ Currently I want to style the site better and add a raking system so some items 
 
 ## Screenshots
 
-<img width="500px" alt="image" src="https://github.com/user-attachments/assets/7642f3b5-7c02-475e-94bd-5c893d946984" />
-<img width="500px" alt="image" src="https://github.com/user-attachments/assets/6c81c91e-3dcd-4458-909b-0f20d45ce6e5" />
-<img width="500px" alt="image" src="https://github.com/user-attachments/assets/fbe5c35c-9cbd-442a-8cab-083e030cd8ae" />
+<img width="500px" alt="image" src="https://github.com/user-attachments/assets/e6e7ed67-2fed-4f5d-a200-1ee370e0e344" />
+<img width="500px" alt="image" src="https://github.com/user-attachments/assets/a2054c41-f077-4d69-8bea-f09f83c1681f" />
+<img width="500px" alt="image" src="https://github.com/user-attachments/assets/f2777787-217b-4b37-98bc-12fd72581938" />
+<img width="500px" alt="image" src="https://github.com/user-attachments/assets/51aeabab-8af4-40d2-98b2-b96ac5592617" />
 <img width="500px" alt="image" src="https://github.com/user-attachments/assets/68f24920-58b3-43bd-a3a5-0e7031e43a21" />
