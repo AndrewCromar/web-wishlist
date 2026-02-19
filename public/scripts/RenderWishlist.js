@@ -148,8 +148,9 @@ function RenderItem(item) {
         wrapper.innerHTML = `
             <p>
               -&nbsp;
-              <span><a href="${item.link || '#'}">${item.name}</a></span>${boughtLink}&nbsp;
+              <span><a href="${item.link || '#'}">${item.name}</a></span>&nbsp;
               <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>
+              ${boughtLink}
             </p>
             <div class="progress-container" style="background: var(--background); border: solid var(--border) 2px; overflow: hidden;">
                 <div class="progress-bar" style="
