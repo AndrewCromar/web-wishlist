@@ -35,15 +35,18 @@ if (!isset($_SESSION['uid'])) {
 <link rel="stylesheet" href="../styles/neat-form.css" />
 <link rel="stylesheet" href="../styles/root.css" />
 <link rel="stylesheet" href="../styles/wishlist.css" />
+<link rel="stylesheet" href="../styles/scroll-section.css" />
 
 <div class="content">
+    <!-- TITLE -->
     <div>
         <div class="center-center">
-            <h1>DASHBOARD</h1>
+            <h1>FUND MANAGEMENT</h1>
         </div>
     </div>
     <div>
         <br>
+        <!-- NAVIGATION -->
         <div class="dropdown open">
             <div onclick="ToggleDropdown(this.parentElement)">
                 <i class="fa-solid fa-caret-down"></i>
@@ -68,13 +71,55 @@ if (!isset($_SESSION['uid'])) {
                 </p>
             </div>
         </div>
-        <div>
-            <div class="dropdown open">
-                <div onclick="ToggleDropdown(this.parentElement)">
-                    <i class="fa-solid fa-caret-down"></i>
-                    <p>Wishlist</p>
+        <!-- LEDGER -->
+        <div class="left-right">
+            <div style="flex: none; width: 250px;">
+                <div class="dropdown open">
+                    <div onclick="ToggleDropdown(this.parentElement)">
+                        <i class="fa-solid fa-caret-down"></i>
+                        <p>Ledger</p>
+                    </div>
+                    <div>
+                        <p>
+                            <span style="font-weight: bold;">Net Total:</span>
+                            <span class="net-funds"></span>
+                        </p>
+                        <hr>
+                        <p style="font-size: smaller;">new to old</p>
+                        <div class="scroll-section">
+                            <table class="ledger-table">
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="wishlist-groups">
+            </div>
+            <!-- FORMS -->
+            <div>
+                <div class="dropdown open">
+                    <div onclick="ToggleDropdown(this.parentElement)">
+                        <i class="fa-solid fa-caret-down"></i>
+                        <p>Add Funds</p>
+                    </div>
+                    <div>
+                        <form id="addFundingForm" class="neatForm">
+                            <input type="number" id="add_funding_amount" name="add_funding_amount"
+                                placeholder="Amount to Add (USD)" required />
+                            <button type="button" id="addFundingButton">Add Funding</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="dropdown open">
+                    <div onclick="ToggleDropdown(this.parentElement)">
+                        <i class="fa-solid fa-caret-down"></i>
+                        <p>Remove Funds</p>
+                    </div>
+                    <div>
+                        <form id="removeFundingForm" class="neatForm">
+                            <input type="number" id="remove_funding_amount" name="remove_funding_amount"
+                                placeholder="Amount to Remove (USD)" required />
+                            <button type="button" id="removeFundingButton">Remove Funding</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,5 +128,7 @@ if (!isset($_SESSION['uid'])) {
 
 <script src="../scripts/Dropdown.js"></script>
 <script src="../scripts/account/Logout.js"></script>
-<script src="../scripts/account/RenderEmail.js"></script>
-<script src="../scripts/RenderWishlist.js"></script>
+<script src="../scripts/funds/AddFunding.js"></script>
+<script src="../scripts/funds/RemoveFunding.js"></script>
+<script src="../scripts/funds/RenderNetFunds.js"></script>
+<script src="../scripts/funds/RenderLedger.js"></script>

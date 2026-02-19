@@ -1,4 +1,5 @@
-function AddFunding(amount) {
+function RemoveFunding(amount) {
+  console.log("sending");
   $.ajax({
     url: "../api/ENDPOINT_AddFunding.php",
     type: "POST",
@@ -21,16 +22,16 @@ function AddFunding(amount) {
 }
 
 document
-  .getElementById("addFundingForm")
+  .getElementById("removeFundingForm")
   .addEventListener("submit", function (e) {
     e.preventDefault();
-    const amount = document.getElementById("add_funding_amount").value;
-    AddFunding(amount);
+    const amount = document.getElementById("remove_funding_amount").value;
+    RemoveFunding(-1 * Math.abs(amount));
   });
 
 document
-  .getElementById("addFundingButton")
+  .getElementById("removeFundingButton")
   .addEventListener("click", function () {
-    const amount = document.getElementById("add_funding_amount").value;
-    AddFunding(amount);
+    const amount = document.getElementById("remove_funding_amount").value;
+    RemoveFunding(-1 * Math.abs(amount));
   });

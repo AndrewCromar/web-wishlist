@@ -1,15 +1,15 @@
-.left-right-div {
+.left-right {
   display: flex;
   width: 100%;
 }
 
-.left-right-div > div {
+.left-right>div {
   flex: 1;
   margin: 0;
   padding: 0;
 }
 
 
-.left-right-div > div:nth-child(1) {
+.left-right>div:nth-child(1) {
   border-right: solid var(--text-color) 2px;
 }

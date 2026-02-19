@@ -35,3 +35,12 @@
 
     height: 100%;
 }
+
+.mark-bought {
+    font-size: smaller;
+    margin-left: 5px;
+    color: var(--link-color);
+}
+.mark-bought:hover {
+    text-decoration: underline;
+}

@@ -12,12 +12,12 @@
   
   transition: max-height 500ms ease;
 
-  margin-bottom: 7.5px;
+  margin-bottom: 20px;
 }
 
-.dropdown:hover {
+/* .dropdown:hover {
   background-color: var(--background-dark);
-}
+} */
 
 .dropdown>div:first-child {
   background-color: var(--background-dark);

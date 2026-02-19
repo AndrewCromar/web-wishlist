@@ -39,7 +39,7 @@ if (!isset($_SESSION['uid'])) {
 <div class="content">
     <div>
         <div class="center-center">
-            <h1>DASHBOARD</h1>
+            <h1>ACCOUNT</h1>
         </div>
     </div>
     <div>
@@ -68,14 +68,20 @@ if (!isset($_SESSION['uid'])) {
                 </p>
             </div>
         </div>
-        <div>
-            <div class="dropdown open">
-                <div onclick="ToggleDropdown(this.parentElement)">
-                    <i class="fa-solid fa-caret-down"></i>
-                    <p>Wishlist</p>
-                </div>
-                <div class="wishlist-groups">
-                </div>
+        <div class="dropdown open">
+            <div onclick="ToggleDropdown(this.parentElement)">
+                <i class="fa-solid fa-caret-down"></i>
+                <p>Account Information</p>
+            </div>
+            <div>
+                <ul style="padding-left: 20px;">
+                    <li>
+                        Email: "<span class="email-display"></span>".
+                    </li>
+                    <li>
+                        UID: "<?php echo $_SESSION['uid']; ?>".
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -84,4 +90,3 @@ if (!isset($_SESSION['uid'])) {
 <script src="../scripts/Dropdown.js"></script>
 <script src="../scripts/account/Logout.js"></script>
 <script src="../scripts/account/RenderEmail.js"></script>
-<script src="../scripts/RenderWishlist.js"></script>
