@@ -9,7 +9,10 @@ if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" =>
 
 $uid = $_SESSION['uid'];
 
-$items = GetUserItems($uid);
+$input = json_decode(file_get_contents('php://input'), true);
+$includeArchived = isset($input['includeArchived']) && $input['includeArchived'] ? true : false;
+
+$items = GetUserItems($uid, $includeArchived);
 $groups = GetUserGroups($uid);
 
 if ($items === false) { echo json_encode(["status" => "fail", "error" => "ERROR007"]); exit; }

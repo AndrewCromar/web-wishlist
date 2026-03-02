@@ -2,6 +2,8 @@ function RenderItemsTable() {
   $.ajax({
     url: "../api/ENDPOINT_GetUserItems.php",
     type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({ includeArchived: true }),
     dataType: "json",
     success: function (response) {
       if (response.status === "OK") {
@@ -23,6 +25,7 @@ function RenderItemsTable() {
               item.price,
               item.weight,
               item.bought,
+              item.archived,
               groups.find((g) => g.id === item.group_id)?.name || "N/A"
             )
           );
@@ -35,7 +38,7 @@ function RenderItemsTable() {
   });
 }
 
-function GenerateItemRow(id, name, url, price, weight, bought, groupId) {
+function GenerateItemRow(id, name, url, price, weight, bought, archived, groupId) {
   const row = document.createElement("tr");
 
   const num = parseFloat(price);
@@ -49,6 +52,7 @@ function GenerateItemRow(id, name, url, price, weight, bought, groupId) {
     <td>${formattedPrice}</td>
     <td>${weight}</td>
     <td>${bought ? "&check;" : "&#10007;"}</td>
+    <td>${archived ? "&check;" : "&#10007;"}</td>
     <td>${displayGroup}</td>
   `;
 

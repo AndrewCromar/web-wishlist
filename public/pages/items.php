@@ -84,6 +84,7 @@ if (!isset($_SESSION['uid'])) {
                                     <th>price</th>
                                     <th>weight</th>
                                     <th>bought</th>
+                                    <th>archived</th>
                                     <th>group</th>
                                 </tr>
                             </table>
@@ -142,6 +143,10 @@ if (!isset($_SESSION['uid'])) {
                             <input type="number" id="edit_weight" name="edit_weight" min="1" max="100" placeholder="Weight (1-100) (optional)" />
                             <input type="number" id="edit_group" name="edit_group" placeholder="Group ID"
                                 required />
+                            <label>
+                                Archived
+                                <input type="checkbox" id="edit_archived" name="edit_archived" />
+                            </label>
                             <button type="button" id="editItemButton">Edit Item</button>
                         </form>
                     </div>
