@@ -16,7 +16,11 @@ function RenderItemsTable() {
         const { items } = response.data;
         const { groups } = response.data;
 
+        let total = 0;
         items.forEach((item) => {
+          const priceNum = parseFloat(item.price) || 0;
+          total += priceNum;
+
           table.appendChild(
             GenerateItemRow(
               item.id,
@@ -30,6 +34,19 @@ function RenderItemsTable() {
             )
           );
         });
+
+        const totalRow = document.createElement("tr");
+        totalRow.innerHTML = `
+          <td></td>
+          <td><strong>Total</strong></td>
+          <td></td>
+          <td>$${total.toFixed(2)}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        `;
+        table.appendChild(totalRow);
       } else {
         console.error("Error fetching items:", response.error);
         alert(response.status + " " + response.error);
