@@ -23,8 +23,8 @@ $uid = $_SESSION['uid'];
 $itemId = intval($data['itemId']);
 $name = $data['name'];
 $link = $data['link'];
-$price = intval($data['price']);
-$weight = max(1, min(100, $data['weight']));
+$price = floatval($data['price']);
+$weight = max(1, min(100, intval($data['weight'])));
 $group_id = isset($data['groupId']) && $data['groupId'] !== '' ? intval($data['groupId']) : null;
 
 if ($itemId <= 0 || empty($name)) {

@@ -38,7 +38,8 @@ function RenderItemsTable() {
 function GenerateItemRow(id, name, url, price, weight, bought, groupId) {
   const row = document.createElement("tr");
 
-  const formattedPrice = price ? `$${price}` : "$0";
+  const num = parseFloat(price);
+  const formattedPrice = !isNaN(num) ? `$${num.toFixed(2)}` : "$0.00";
   const displayGroup = groupId || "N/A";
 
   row.innerHTML = `

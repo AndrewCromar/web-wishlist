@@ -118,7 +118,7 @@ if (!isset($_SESSION['uid'])) {
                         <form id="addItemForm" class="neatForm">
                             <input type="text" id="add_name" name="add_name" placeholder="Name" required />
                             <input type="text" id="add_link" name="add_link" placeholder="Link" required />
-                            <input type="number" id="add_price" name="add_price" placeholder="Price (USD)"
+                            <input type="number" step="0.01" min="0" id="add_price" name="add_price" placeholder="Price (USD)"
                                 required />
                             <input type="number" id="add_weight" name="add_weight" min="1" max="100" placeholder="Weight (1-100) (optional)" />
                             <input type="number" id="add_group" name="add_group" placeholder="Group ID (optional)" />
@@ -137,7 +137,7 @@ if (!isset($_SESSION['uid'])) {
                                 required />
                             <input type="text" id="edit_name" name="edit_name" placeholder="Name" required />
                             <input type="text" id="edit_link" name="edit_link" placeholder="Link" required />
-                            <input type="number" id="edit_price" name="edit_price" placeholder="Price (USD)"
+                            <input type="number" step="0.01" min="0" id="edit_price" name="edit_price" placeholder="Price (USD)"
                                 required />
                             <input type="number" id="edit_weight" name="edit_weight" min="1" max="100" placeholder="Weight (1-100) (optional)" />
                             <input type="number" id="edit_group" name="edit_group" placeholder="Group ID"
