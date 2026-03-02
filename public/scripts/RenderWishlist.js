@@ -148,7 +148,7 @@ function RenderItem(item) {
         wrapper.innerHTML = `
             <p>
               -&nbsp;
-              <span><a href="${item.link || '#'}">${item.name}</a></span>&nbsp;
+              <span><a href="${item.link || '#'}" target="_blank">${item.name}</a></span>&nbsp;
               <span>$${item.calculatedFunds} / $${item.price} (${item.percentFilled}%)</span>
               ${boughtLink}
             </p>
