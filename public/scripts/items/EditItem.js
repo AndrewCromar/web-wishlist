@@ -7,6 +7,7 @@ document.getElementById("edit_id").addEventListener("input", function () {
     document.getElementById("edit_price").value = "";
     document.getElementById("edit_weight").value = "";
     document.getElementById("edit_group").value = "";
+    document.getElementById("edit_archived").checked = false;
     return;
   }
 
@@ -26,12 +27,14 @@ document.getElementById("edit_id").addEventListener("input", function () {
         document.getElementById("edit_price").value = item.price;
         document.getElementById("edit_weight").value = item.weight;
         document.getElementById("edit_group").value = item.group_id || "";
+        document.getElementById("edit_archived").checked = item.archived == 1 || item.archived === true;
       } else {
         document.getElementById("edit_name").value = "";
         document.getElementById("edit_link").value = "";
         document.getElementById("edit_price").value = "";
         document.getElementById("edit_weight").value = "";
         document.getElementById("edit_group").value = "";
+        document.getElementById("edit_archived").checked = false;
       }
     },
     error: function (xhr, status, error) {
@@ -40,6 +43,7 @@ document.getElementById("edit_id").addEventListener("input", function () {
       document.getElementById("edit_price").value = "";
       document.getElementById("edit_weight").value = "";
       document.getElementById("edit_group").value = "";
+      document.getElementById("edit_archived").checked = false;
     }
   });
 });
@@ -52,7 +56,8 @@ document.getElementById("editItemForm").addEventListener("submit", function (e) 
   const price = document.getElementById("edit_price").value;
   const weight = document.getElementById("edit_weight").value;
   const groupId = document.getElementById("edit_group").value;
-  EditItem(id, name, link, price, weight, groupId);
+  const archived = document.getElementById("edit_archived").checked;
+  EditItem(id, name, link, price, weight, groupId, archived);
 });
 
 document.getElementById("editItemButton").addEventListener("click", function () {
@@ -62,10 +67,11 @@ document.getElementById("editItemButton").addEventListener("click", function () 
   const price = document.getElementById("edit_price").value;
   const weight = document.getElementById("edit_weight").value;
   const groupId = document.getElementById("edit_group").value;
-  EditItem(id, name, link, price, weight, groupId);
+  const archived = document.getElementById("edit_archived").checked;
+  EditItem(id, name, link, price, weight, groupId, archived);
 });
 
-function EditItem(id, name, link, price, weight, groupId) {
+function EditItem(id, name, link, price, weight, groupId, archived) {
   $.ajax({
     url: "../api/ENDPOINT_EditItem.php",
     type: "POST",
@@ -77,6 +83,7 @@ function EditItem(id, name, link, price, weight, groupId) {
       price,
       weight,
       groupId: groupId !== '' ? parseInt(groupId) : null,
+      archived,
     }),
     dataType: "json",
     success: function (response) {

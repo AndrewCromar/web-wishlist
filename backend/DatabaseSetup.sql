@@ -50,6 +50,7 @@ CREATE TABLE items (
     price DECIMAL(10,2) NOT NULL,
     weight INT NOT NULL DEFAULT 1,
     bought BOOLEAN NOT NULL DEFAULT FALSE,
+    archived BOOLEAN NOT NULL DEFAULT FALSE,
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -58,6 +59,7 @@ CREATE TABLE items (
     INDEX idx_uid (uid),
     INDEX idx_group_id (group_id),
     INDEX idx_bought (bought),
+    INDEX idx_archived (archived),
 
     CONSTRAINT fk_items_account
         FOREIGN KEY (uid) REFERENCES accounts(uid)

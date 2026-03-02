@@ -24,8 +24,9 @@ $itemId = intval($data['itemId']);
 $name = $data['name'];
 $link = $data['link'];
 $price = intval($data['price']);
-$weight = max(1, min(100, $data['weight']));
+$weight = isset($data['weight']) ? max(1, min(100, intval($data['weight']))) : 1;
 $group_id = isset($data['groupId']) && $data['groupId'] !== '' ? intval($data['groupId']) : null;
+$archived = isset($data['archived']) ? (bool)$data['archived'] : false;
 
 if ($itemId <= 0 || empty($name)) {
     echo json_encode(["status" => "fail", "error" => "ERROR011"]);
@@ -37,7 +38,7 @@ if ($group_id !== null && !VerifyGroupOwnership($uid, $group_id)) {
     exit;
 }
 
-$result = EditItem($uid, $itemId, $name, $link, $price, $weight, $group_id);
+$result = EditItem($uid, $itemId, $name, $link, $price, $weight, $group_id, $archived);
 
 if ($result === false) {
     echo json_encode(["status" => "fail", "error" => "ERROR012"]);
