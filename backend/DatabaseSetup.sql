@@ -4,27 +4,6 @@ CREATE DATABASE IF NOT EXISTS wishlist
 
 USE wishlist;
 
-CREATE TABLE accounts (
-    uid INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
-    UNIQUE KEY uniq_email (email)
-);
-
-CREATE TABLE codes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    uid INT NOT NULL,
-    code VARCHAR(16) NOT NULL,
-    time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    INDEX idx_code (code),
-    INDEX idx_uid (uid),
-    INDEX idx_time (time),
-
-    CONSTRAINT fk_codes_account
-        FOREIGN KEY (uid) REFERENCES accounts(uid)
-        ON DELETE CASCADE
-);
-
 CREATE TABLE groups (
     id INT AUTO_INCREMENT PRIMARY KEY,
     uid INT NOT NULL,
@@ -35,9 +14,6 @@ CREATE TABLE groups (
     INDEX idx_uid (uid),
     UNIQUE KEY uniq_user_group (uid, name),
 
-    CONSTRAINT fk_groups_account
-        FOREIGN KEY (uid) REFERENCES accounts(uid)
-        ON DELETE CASCADE
 );
 
 CREATE TABLE items (
@@ -61,10 +37,6 @@ CREATE TABLE items (
     INDEX idx_bought (bought),
     INDEX idx_archived (archived),
 
-    CONSTRAINT fk_items_account
-        FOREIGN KEY (uid) REFERENCES accounts(uid)
-        ON DELETE CASCADE,
-
     CONSTRAINT fk_items_group
         FOREIGN KEY (group_id) REFERENCES groups(id)
         ON DELETE SET NULL
@@ -83,7 +55,4 @@ CREATE TABLE ledger (
     INDEX idx_uid (uid),
     INDEX idx_created_at (created_at),
 
-    CONSTRAINT fk_ledger_account
-        FOREIGN KEY (uid) REFERENCES accounts(uid)
-        ON DELETE CASCADE
 );
