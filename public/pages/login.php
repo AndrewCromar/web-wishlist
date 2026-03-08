@@ -1,10 +1,24 @@
 <?php
-session_start();
+require_once dirname(__DIR__, 2) . '/backend/config/global.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/AuthCheck.php';
 
-if (isset($_SESSION['uid'])) {
+$uid = GetAuthenticatedUid();
+if ($uid) {
     header("Location: dashboard.php");
     exit;
 }
+
+$protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+$dashboard = $protocol . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/dashboard.php';
+
+global $live;
+if ($live) {
+    $authBase = 'https://auth.andrewcromar.org';
+} else {
+    $authBase = $protocol . $_SERVER['HTTP_HOST'] . '/web_auth/public';
+}
+
+$loginUrl = $authBase . '/pages/login.html?redirect=' . urlencode($dashboard);
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -16,38 +30,35 @@ if (isset($_SESSION['uid'])) {
 <link rel="stylesheet" href="../styles/a.css" />
 <link rel="stylesheet" href="../styles/center-center.css" />
 <link rel="stylesheet" href="../styles/content.css" />
-<link rel="stylesheet" href="../styles/dropdown.css" />
 <link rel="stylesheet" href="../styles/form.css" />
-<link rel="stylesheet" href="../styles/hr.css" />
-<link rel="stylesheet" href="../styles/icon-text.css" />
-<link rel="stylesheet" href="../styles/left-right-div.css" />
 <link rel="stylesheet" href="../styles/main.css" />
-<link rel="stylesheet" href="../styles/nav-area.css" />
-<link rel="stylesheet" href="../styles/neat-form.css" />
 <link rel="stylesheet" href="../styles/root.css" />
 <link rel="stylesheet" href="../styles/wishlist.css" />
-
 
 <div class="center-center">
     <div class="login-form">
         <center>
-            <h1>Login</h1>
+            <h1>Logged Out</h1>
         </center>
         <hr><br>
-        <form id="loginEmailForm">
-            <label for="login_email">EMAIL:</label>
-            <input type="text" id="login_email" name="login_email" required />
-            <br><br>
-            <button type="button" id="loginEmailButton">Login</button>
-        </form>
-        <form id="loginCodeForm" style="display: none;">
-            <label for="login_code">LOGIN CODE (sent via email)</label>
-            <input type="text" id="login_code" name="login_code" required />
-            <br><br>
-            <button type="button" id="loginCodeButton">Login</button>
-        </form>
+        <p>You are not currently logged in.</p>
+        <br>
+        <a href="<?php echo htmlspecialchars($loginUrl); ?>" style="text-decoration: none;">
+            <button type="button" style="
+                background-color: rgba(42, 42, 42);
+                color: white;
+                font-family: 'Roboto', monospace;
+                height: 40px;
+                padding: 10px;
+                text-align: center;
+                border: solid rgba(59, 59, 59) 2px;
+                border-radius: 10px;
+                transition-duration: 200ms;
+                cursor: pointer;
+            " onmouseover="this.style.backgroundColor='rgb(17,138,36)'; this.style.translate='0 -2px';"
+               onmouseout="this.style.backgroundColor='rgba(42,42,42)'; this.style.translate='0 0';">
+                Login with auth.andrewcromar.org
+            </button>
+        </a>
     </div>
 </div>
-
-<script src="../scripts/account/LoginEmail.js"></script>
-<script src="../scripts/account/LoginCode.js"></script>

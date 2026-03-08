@@ -1,12 +1,10 @@
 <?php
 require_once __DIR__ . '/../db/CreateDBConnection.php';
 
-function GetLoggedInEmail() {
-    if (!isset($_SESSION['uid'])) {
+function GetLoggedInEmail($uid = null) {
+    if (!$uid) {
         return "Not logged in";
     }
-
-    $uid = $_SESSION['uid'];
 
     $conn = CreateDBConnection();
     $stmt = $conn->prepare("SELECT email FROM accounts WHERE uid = ?");

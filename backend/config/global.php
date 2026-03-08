@@ -5,6 +5,6 @@
 $live = false;
 
 $DB_servername = "localhost";
-$DB_username = "wishlist";
-$DB_password = "wishlist";
+$DB_username = "root";
+$DB_password = "";
 $DB_name = "wishlist";
