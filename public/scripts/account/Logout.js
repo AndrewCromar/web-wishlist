@@ -1,7 +1,8 @@
 function Logout() {
-    var protocol = window.location.protocol + '//';
-    var host = window.location.host;
     var thisPage = window.location.href;
-    var authBase = protocol + host + '/web_auth/public';
+    var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    var authBase = isLocal
+        ? window.location.protocol + '//' + window.location.host + '/web_auth/public'
+        : 'https://auth.andrewcromar.org';
     window.location.href = authBase + '/pages/logout.html?redirect=' + encodeURIComponent(thisPage);
 }
