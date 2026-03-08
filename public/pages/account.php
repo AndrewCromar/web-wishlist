@@ -1,7 +1,9 @@
 <?php
-session_start();
+require_once dirname(__DIR__, 2) . '/backend/config/global.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/AuthCheck.php';
 
-if (!isset($_SESSION['uid'])) {
+$uid = GetAuthenticatedUid();
+if (!$uid) {
     header("Location: login.php");
     exit;
 }
@@ -74,7 +76,7 @@ if (!isset($_SESSION['uid'])) {
                         Email: "<span class="email-display"></span>".
                     </li>
                     <li>
-                        UID: "<?php echo $_SESSION['uid']; ?>".
+                        UID: "<?php echo $uid; ?>".
                     </li>
                 </ul>
             </div>

@@ -1,13 +1,16 @@
 <?php
 
-session_start();
+require_once dirname(__DIR__, 2) . '/backend/config/global.php';
+require_once dirname(__DIR__, 2) . '/backend/functions/AuthCheck.php';
+$uid = GetAuthenticatedUid();
 
 require_once dirname(__DIR__, 2) . '/backend/functions/GetUserItems.php';
 require_once dirname(__DIR__, 2) . '/backend/functions/GetUserGroups.php';
 
-if (!isset($_SESSION['uid'])) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
 
-$uid = $_SESSION['uid'];
+if (!$uid) { echo json_encode(["status" => "fail", "error" => "ERROR006"]); exit; }
+
+
 
 $input = json_decode(file_get_contents('php://input'), true);
 $includeArchived = isset($input['includeArchived']) && $input['includeArchived'] ? true : false;
