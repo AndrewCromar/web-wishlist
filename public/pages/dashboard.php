@@ -50,8 +50,6 @@ if (!$uid) {
                 <p>
                     <span><a href="dashboard.php">Dashboard</a></span>
                     /
-                    <span><a href="account.php">Account</a></span>
-                    /
                     <span><a onclick="Logout();">Logout</a></span>
                 </p>
                 <p>
@@ -80,5 +78,4 @@ if (!$uid) {
 
 <script src="../scripts/Dropdown.js"></script>
 <script src="../scripts/account/Logout.js"></script>
-<script src="../scripts/account/RenderEmail.js"></script>
 <script src="../scripts/RenderWishlist.js"></script>
