@@ -141,10 +141,11 @@ function RenderItem(item) {
             </p>
         `;
     } else {
-        let boughtLink = "";
-        if (item.isFullyFunded) {
-            boughtLink = `&nbsp;<a onclick="MarkBoughtHandler(${item.id}, ${item.calculatedFunds}); return false;" class="mark-bought">mark bought</a>`;
-        }
+        let boughtLink = `&nbsp;<a onclick="MarkBoughtHandler(${item.id}, ${item.calculatedFunds}); return false;" class="mark-bought">mark bought</a>`;
+        // let boughtLink = "";
+        // if (item.isFullyFunded) {
+        //     boughtLink = `&nbsp;<a onclick="MarkBoughtHandler(${item.id}, ${item.calculatedFunds}); return false;" class="mark-bought">mark bought</a>`;
+        // }
         wrapper.innerHTML = `
             <p>
               -&nbsp;
